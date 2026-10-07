@@ -1,369 +1,116 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Physics Working Models- RC Car, Robot, Alarm Projects
-</title>
+<title>Physics Working Models - 150 Projects</title>
 <style>
-:root {
-    --bg: #0f1729;
-    --bg2: #1a2332;
-    --bg3: #151d29;
-    --card-border: #2d3748;
-    --text: #e2e8f0;
-    --text-dim: #a0aec0;
-    --primary: #ff6b35;
-    --primary2: #f7931e;
-    --accent: #22c55e;
-    --danger: #ef4444;
-    --warning: #f59e0b;
-}
-body.light {
-    --bg: #f7fafc;
-    --bg2: #ffffff;
-    --bg3: #edf2f7;
-    --card-border: #cbd5e0;
-    --text: #1a202c;
-    --text-dim: #4a5568;
-}
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Arial,sans-serif; }
-body { background: var(--bg); color: var(--text); line-height:1.6; transition: 0.3s; }
-
-header {
-    background: linear-gradient(135deg, #ff6b35, #f7931e);
-    color: white; padding: 40px 20px; text-align: center;
-    position: relative; overflow: hidden;
-}
-header h1 { font-size: 2.5rem; margin-bottom: 10px; text-shadow:2px 2px 4px rgba(0,0,0,0.3); }
-header p { font-size: 1.1rem; }
-
-.top-bar {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 12px 20px; background: #0a0f1a; color: white;
-    position: sticky; top: 0; z-index: 200;
-    border-bottom: 2px solid var(--primary);
-}
-.top-bar .logo { font-weight: bold; color: var(--primary); font-size: 1.1rem; }
-.top-bar .actions { display: flex; gap: 10px; }
-.top-btn {
-    background: rgba(255,107,53,0.15); color: var(--primary);
-    border: 1px solid var(--primary); padding: 6px 12px;
-    border-radius: 20px; cursor: pointer; font-weight: bold;
-    font-size: 0.85rem; transition: 0.3s;
-}
-.top-btn:hover { background: var(--primary); color: white; }
-
-nav {
-    background: var(--bg2); padding: 15px; text-align: center;
-    position: sticky; top: 52px; z-index: 100;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.2);
-    overflow-x: auto; white-space: nowrap;
-    border-bottom: 1px solid var(--card-border);
-}
-nav a {
-    color: var(--text); margin: 0 8px; text-decoration: none;
-    font-weight: bold; cursor: pointer; padding: 8px 14px;
-    border-radius: 8px; transition: 0.3s; display: inline-block;
-    font-size: 0.9rem;
-}
-nav a:hover, nav a.active { background: var(--primary); color: white; }
-
-.hero-stats {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
-    gap: 15px; padding: 30px; max-width: 1000px; margin: auto;
-}
-.stat-card {
-    background: var(--bg2); padding: 20px; border-radius: 12px;
-    text-align: center; border: 1px solid var(--card-border);
-}
-.stat-card h3 { color:var(--primary); font-size:2rem; margin-bottom:5px; }
-.stat-card p { color:var(--text-dim); font-size:0.9rem; }
-
-.search-box { text-align: center; padding: 20px; }
-.search-box input {
-    padding: 14px 22px; width: 70%; max-width: 500px;
-    border: 2px solid var(--primary); border-radius: 30px;
-    font-size: 1rem; outline: none; background: var(--bg2); color: var(--text);
-}
-.search-box input::placeholder { color: var(--text-dim); }
-.search-box input:focus { box-shadow: 0 0 20px rgba(255,107,53,0.4); }
-
-.categories {
-    display: flex; flex-wrap: wrap; justify-content: center;
-    gap: 10px; padding: 0 20px 20px;
-}
-.category-btn {
-    background: var(--bg2); border: 2px solid var(--card-border);
-    color: var(--text); padding: 10px 18px; border-radius: 25px;
-    cursor: pointer; font-weight: bold; transition: 0.3s;
-    font-size: 0.9rem;
-}
-.category-btn:hover, .category-btn.active {
-    background: var(--primary); border-color: var(--primary); color: white;
-    transform: translateY(-2px);
-}
-
-.sort-bar {
-    display: flex; justify-content: center; gap: 10px;
-    padding: 0 20px 20px; flex-wrap: wrap;
-}
-.sort-btn {
-    background: var(--bg2); border: 1px solid var(--card-border);
-    color: var(--text-dim); padding: 6px 14px; border-radius: 20px;
-    cursor: pointer; font-size: 0.85rem; transition: 0.3s;
-}
-.sort-btn.active { background: var(--primary2); color: white; border-color: var(--primary2); }
-
-.projects-list { padding: 20px 30px 60px; max-width: 1400px; margin: auto; }
-.projects-list h2 {
-    text-align: center; margin-bottom: 30px; color: var(--primary);
-    font-size: 1.8rem;
-}
-
-#projectContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 22px;
-}
-
-.project-card {
-    background: var(--bg2); padding: 22px; border-radius: 15px;
-    border: 1px solid var(--card-border);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    transition: 0.3s; cursor: pointer; position: relative;
-    overflow: hidden;
-}
-.project-card::before {
-    content:""; position:absolute; top:0; left:0; width:4px; height:100%;
-    background: linear-gradient(180deg, var(--primary), var(--primary2));
-}
-.project-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(255,107,53,0.25);
-    border-color: var(--primary);
-}
-.project-card h3 { color: var(--text); margin-bottom: 10px; font-size: 1.15rem; }
-.project-card p { margin: 6px 0; color: var(--text-dim); font-size: 0.9rem; }
-.project-card .icon-big { font-size: 2.5rem; margin-bottom: 8px; }
-
-.fav-btn {
-    position: absolute; top: 12px; right: 12px;
-    background: none; border: none; font-size: 1.4rem;
-    cursor: pointer; opacity: 0.5; transition: 0.3s;
-}
-.fav-btn:hover, .fav-btn.active { opacity: 1; transform: scale(1.2); }
-.fav-btn.active { color: #ef4444; }
-
-.tag {
-    display: inline-block; padding: 3px 10px; border-radius: 12px;
-    font-size: 0.72rem; font-weight: bold; margin-right: 5px;
-    margin-top: 5px;
-}
-body.dark .tag-easy { background:#22543d; color:#9ae6b4; }
-body.dark .tag-medium { background:#744210; color:#fbd38d; }
-body.dark .tag-hard { background:#742a2a; color:#feb2b2; }
-body.dark .tag-cat { background:#2c5282; color:#bee3f8; }
-body.dark .tag-cost { background:#553c9a; color:#d6bcfa; }
-body:not(.dark) .tag-easy { background:#c6f6d5; color:#22543d; }
-body:not(.dark) .tag-medium { background:#fefcbf; color:#744210; }
-body:not(.dark) .tag-hard { background:#fed7d7; color:#742a2a; }
-body:not(.dark) .tag-cat { background:#bee3f8; color:#2a4365; }
-body:not(.dark) .tag-cost { background:#e9d8fd; color:#553c9a; }
-
-/* Modal */
-.modal-overlay {
-    display: none; position: fixed; top:0; left:0;
-    width:100%; height:100%; background: rgba(0,0,0,0.85);
-    z-index: 1000; justify-content: center; align-items: flex-start;
-    padding: 30px 15px; overflow-y: auto;
-}
-.modal-overlay.show { display: flex; }
-.modal {
-    background: var(--bg2); max-width: 900px; width: 100%;
-    border-radius: 15px; padding: 30px; position: relative;
-    border: 1px solid var(--card-border);
-    animation: slideDown 0.3s ease;
-}
-@keyframes slideDown {
-    from { transform: translateY(-40px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-.modal h2 { color: var(--primary); margin-bottom: 15px; padding-right: 40px; }
-.modal h3 {
-    color: var(--primary2); margin: 22px 0 10px;
-    border-bottom: 2px solid var(--card-border); padding-bottom: 6px;
-    font-size: 1.1rem;
-}
-.modal ul, .modal ol { padding-left: 25px; }
-.modal li { margin: 7px 0; color: var(--text); }
-.modal p { margin: 8px 0; color: var(--text); }
-
-.project-image {
-    width: 100%; height: 220px; object-fit: cover;
-    border-radius: 12px; margin: 15px 0;
-    background: var(--bg3);
-}
-
-.concept-box {
-    background: var(--bg3); border-left: 4px solid var(--primary);
-    padding: 14px 18px; border-radius: 8px; margin: 12px 0;
-    color: var(--text);
-}
-.code-box {
-    background: #0d1117; padding: 12px; border-radius: 8px;
-    font-family: 'Consolas', monospace; font-size: 0.85rem;
-    overflow-x: auto; color: #7ee787; border: 1px solid var(--card-border);
-    margin: 10px 0; white-space: pre;
-}
-.warning-box {
-    background: #742a2a; border-left: 4px solid #f56565;
-    padding: 12px 16px; border-radius: 8px; margin: 12px 0;
-    color: #fed7d7;
-}
-.video-box {
-    position: relative; padding-bottom: 56.25%; height: 0;
-    border-radius: 10px; overflow: hidden; margin: 12px 0;
-    background: #000;
-}
-.video-box iframe {
-    position: absolute; top:0; left:0;
-    width: 100%; height: 100%; border: 0;
-}
-
-.action-buttons {
-    display: flex; gap: 10px; flex-wrap: wrap;
-    margin: 15px 0; padding: 15px 0;
-    border-top: 1px solid var(--card-border);
-    border-bottom: 1px solid var(--card-border);
-}
-.action-btn {
-    background: var(--primary); color: white; border: none;
-    padding: 10px 16px; border-radius: 20px; cursor: pointer;
-    font-weight: bold; font-size: 0.85rem; transition: 0.3s;
-    display: inline-flex; align-items: center; gap: 6px;
-}
-.action-btn:hover { background: var(--primary2); transform: translateY(-2px); }
-.action-btn.secondary {
-    background: var(--bg3); color: var(--text);
-    border: 1px solid var(--card-border);
-}
-.action-btn.green { background: var(--accent); }
-.action-btn.blue { background: #3182ce; }
-
-.components-list li {
-    display: flex; justify-content: space-between;
-    align-items: center; padding: 8px 0;
-    border-bottom: 1px dashed var(--card-border);
-}
-.buy-link {
-    background: #ff9900; color: white; padding: 4px 10px;
-    border-radius: 12px; font-size: 0.75rem;
-    text-decoration: none; font-weight: bold;
-}
-.buy-link:hover { background: #e88a00; }
-
-/* Rating */
-.rating-section {
-    background: var(--bg3); padding: 15px;
-    border-radius: 10px; margin: 15px 0;
-    text-align: center;
-}
-.stars { font-size: 2rem; cursor: pointer; user-select: none; }
-.star { color: #4a5568; transition: 0.2s; }
-.star.active, .star:hover { color: #fbbf24; transform: scale(1.2); }
-
-/* Comments */
-.comments-section {
-    margin-top: 20px; padding: 20px;
-    background: var(--bg3); border-radius: 12px;
-}
-.comment-input {
-    display: flex; gap: 10px; margin-bottom: 15px;
-    flex-wrap: wrap;
-}
-.comment-input input, .comment-input textarea {
-    flex: 1; min-width: 200px; padding: 10px 14px;
-    border-radius: 20px; border: 1px solid var(--card-border);
-    background: var(--bg2); color: var(--text); outline: none;
-}
-.comment-input button {
-    background: var(--primary); color: white;
-    border: none; padding: 10px 20px;
-    border-radius: 20px; cursor: pointer; font-weight: bold;
-}
-.comment-item {
-    background: var(--bg2); padding: 12px 15px;
-    border-radius: 10px; margin-bottom: 10px;
-    border-left: 3px solid var(--primary);
-}
-.comment-item .name { font-weight: bold; color: var(--primary); }
-.comment-item .time { font-size: 0.75rem; color: var(--text-dim); }
-
-.close-btn {
-    position: absolute; top: 15px; right: 20px;
-    background: var(--danger); color: white; border: none;
-    width: 38px; height: 38px; border-radius: 50%;
-    font-size: 1.2rem; cursor: pointer; font-weight: bold;
-    z-index: 10;
-}
-.close-btn:hover { filter: brightness(0.85); }
-
-footer {
-    background: #0d1117; color: var(--text-dim); text-align: center;
-    padding: 30px; font-size: 0.95rem; border-top: 1px solid var(--card-border);
-}
-.no-result {
-    grid-column: 1/-1; text-align: center;
-    padding: 60px; color: var(--text-dim); font-size: 1.2rem;
-}
-
-.info-banner {
-    background: var(--bg2); padding: 20px;
-    border-radius: 12px; margin: 20px 30px;
-    text-align: center; border-left: 5px solid var(--primary);
-}
-.info-banner p { color: var(--text-dim); }
-
-.progress-tracker {
-    background: var(--bg2); padding: 20px; margin: 20px 30px;
-    border-radius: 12px; border: 1px solid var(--card-border);
-}
-.progress-bar {
-    height: 12px; background: var(--bg3);
-    border-radius: 6px; overflow: hidden; margin-top: 10px;
-}
-.progress-fill {
-    height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary2));
-    width: 0%; transition: 0.5s;
-    border-radius: 6px;
-}
-
-@media print {
-    .top-bar, nav, .search-box, .categories, .sort-bar,
-    .action-buttons, .close-btn, footer, .comments-section,
-    .rating-section { display: none !important; }
-    body { background: white; color: black; }
-    .modal { box-shadow: none; }
-}
-
-@media (max-width: 600px) {
-    header h1 { font-size: 1.6rem; }
-    nav a { margin: 0 3px; font-size: 0.78rem; padding: 6px 8px; }
-    .search-box input { width: 90%; }
-    .modal { padding: 20px; }
-    .projects-list { padding: 15px; }
-    .top-bar { padding: 10px 12px; }
-    .top-btn { padding: 5px 8px; font-size: 0.75rem; }
-}
+:root{--bg:#0f1729;--bg2:#1a2332;--bg3:#151d29;--cb:#2d3748;--tx:#e2e8f0;--td:#a0aec0;--pr:#ff6b35;--pr2:#f7931e}
+body.light{--bg:#f7fafc;--bg2:#fff;--bg3:#edf2f7;--cb:#cbd5e0;--tx:#1a202c;--td:#4a5568}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+body{background:var(--bg);color:var(--tx);line-height:1.6;transition:.3s}
+header{background:linear-gradient(135deg,#ff6b35,#f7931e);color:#fff;padding:40px 20px;text-align:center}
+header h1{font-size:2.3rem;margin-bottom:10px}
+header p{font-size:1rem}
+.top-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:#0a0f1a;color:#fff;position:sticky;top:0;z-index:200;border-bottom:2px solid var(--pr)}
+.top-bar .logo{font-weight:bold;color:var(--pr);font-size:1.1rem}
+.top-btn{background:rgba(255,107,53,.15);color:var(--pr);border:1px solid var(--pr);padding:6px 12px;border-radius:20px;cursor:pointer;font-weight:bold;font-size:.85rem}
+.top-btn:hover{background:var(--pr);color:#fff}
+nav{background:var(--bg2);padding:12px;text-align:center;position:sticky;top:52px;z-index:100;overflow-x:auto;white-space:nowrap;border-bottom:1px solid var(--cb)}
+nav a{color:var(--tx);margin:0 6px;text-decoration:none;font-weight:bold;cursor:pointer;padding:8px 12px;border-radius:8px;display:inline-block;font-size:.9rem}
+nav a:hover,nav a.active{background:var(--pr);color:#fff}
+.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;padding:20px;max-width:1000px;margin:auto}
+.stat-card{background:var(--bg2);padding:18px;border-radius:12px;text-align:center;border:1px solid var(--cb)}
+.stat-card h3{color:var(--pr);font-size:1.8rem}
+.stat-card p{color:var(--td);font-size:.85rem}
+.search-box{text-align:center;padding:15px}
+.search-box input{padding:14px 22px;width:75%;max-width:500px;border:2px solid var(--pr);border-radius:30px;font-size:1rem;outline:none;background:var(--bg2);color:var(--tx)}
+.search-box input::placeholder{color:var(--td)}
+.categories{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:0 15px 15px}
+.category-btn{background:var(--bg2);border:2px solid var(--cb);color:var(--tx);padding:8px 16px;border-radius:25px;cursor:pointer;font-weight:bold;font-size:.85rem}
+.category-btn:hover,.category-btn.active{background:var(--pr);border-color:var(--pr);color:#fff}
+.sort-bar{display:flex;justify-content:center;gap:8px;padding:0 15px 15px;flex-wrap:wrap}
+.sort-btn{background:var(--bg2);border:1px solid var(--cb);color:var(--td);padding:6px 12px;border-radius:20px;cursor:pointer;font-size:.8rem}
+.sort-btn.active{background:var(--pr2);color:#fff}
+.projects-list{padding:15px 20px 60px;max-width:1400px;margin:auto}
+.projects-list h2{text-align:center;margin-bottom:20px;color:var(--pr);font-size:1.6rem}
+#projectContainer{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.project-card{background:var(--bg2);padding:20px;border-radius:14px;border:1px solid var(--cb);box-shadow:0 4px 12px rgba(0,0,0,.2);transition:.3s;cursor:pointer;position:relative;overflow:hidden}
+.project-card::before{content:"";position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,var(--pr),var(--pr2))}
+.project-card:hover{transform:translateY(-6px);box-shadow:0 12px 28px rgba(255,107,53,.25);border-color:var(--pr)}
+.project-card h3{color:var(--tx);margin-bottom:8px;font-size:1.05rem}
+.project-card p{margin:5px 0;color:var(--td);font-size:.85rem}
+.project-card .icon-big{font-size:2.2rem;margin-bottom:6px}
+.fav-btn{position:absolute;top:10px;right:10px;background:none;border:none;font-size:1.3rem;cursor:pointer;opacity:.5;filter:grayscale(1)}
+.fav-btn.active{opacity:1;filter:none}
+.tag{display:inline-block;padding:3px 9px;border-radius:12px;font-size:.7rem;font-weight:bold;margin-right:4px;margin-top:4px}
+body.dark .tag-easy{background:#22543d;color:#9ae6b4}
+body.dark .tag-medium{background:#744210;color:#fbd38d}
+body.dark .tag-hard{background:#742a2a;color:#feb2b2}
+body.dark .tag-cat{background:#2c5282;color:#bee3f8}
+body.dark .tag-cost{background:#553c9a;color:#d6bcfa}
+body:not(.dark) .tag-easy{background:#c6f6d5;color:#22543d}
+body:not(.dark) .tag-medium{background:#fefcbf;color:#744210}
+body:not(.dark) .tag-hard{background:#fed7d7;color:#742a2a}
+body:not(.dark) .tag-cat{background:#bee3f8;color:#2a4365}
+body:not(.dark) .tag-cost{background:#e9d8fd;color:#553c9a}
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);z-index:1000;justify-content:center;align-items:flex-start;padding:20px 10px;overflow-y:auto}
+.modal-overlay.show{display:flex}
+.modal{background:var(--bg2);max-width:950px;width:100%;border-radius:15px;padding:30px;position:relative;border:1px solid var(--cb);max-height:95vh}
+@keyframes sl{from{transform:translateY(-30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal{animation:sl .3s ease}
+.modal h2{color:var(--pr);margin-bottom:10px;font-size:1.5rem;text-align:center}
+.modal h3{color:var(--pr2);margin:22px 0 10px;border-bottom:2px solid var(--cb);padding-bottom:6px;font-size:1.15rem}
+.modal ul,.modal ol{padding-left:22px}
+.modal li{margin:6px 0}
+.modal p{margin:6px 0}
+.modal-header{text-align:center;padding-bottom:15px;border-bottom:2px solid var(--cb);margin-bottom:15px}
+.modal-icon{font-size:3.5rem;line-height:1}
+.modal-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;margin-top:10px}
+.concept-box{background:var(--bg3);border-left:4px solid var(--pr);padding:14px 18px;border-radius:8px;margin:10px 0;font-size:1rem}
+.code-box{background:#0d1117;padding:15px;border-radius:8px;font-family:Consolas,monospace;font-size:.85rem;overflow-x:auto;color:#7ee787;border:1px solid var(--cb);white-space:pre;max-height:350px;overflow-y:auto}
+.warning-box{background:#742a2a;border-left:4px solid #f56565;padding:12px 16px;border-radius:8px;margin:10px 0;color:#fed7d7;font-size:.9rem}
+.video-search{text-align:center;padding:18px;background:var(--bg3);border-radius:12px;margin:10px 0}
+.action-buttons{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0;padding:12px 0;border-top:1px solid var(--cb);border-bottom:1px solid var(--cb);justify-content:center}
+.action-btn{background:var(--pr);color:#fff;border:none;padding:10px 16px;border-radius:20px;cursor:pointer;font-weight:bold;font-size:.85rem;display:inline-flex;align-items:center;gap:5px;text-decoration:none}
+.action-btn:hover{background:var(--pr2)}
+.action-btn.secondary{background:var(--bg3);color:var(--tx);border:1px solid var(--cb)}
+.action-btn.green{background:#22c55e}
+.action-btn.blue{background:#3182ce}
+.action-btn.red{background:#e53e3e}
+.components-list{list-style:none;padding:0!important}
+.components-list li{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--bg3);border-radius:8px;margin-bottom:6px}
+.buy-link{background:#ff9900;color:#fff;padding:4px 10px;border-radius:12px;font-size:.75rem;text-decoration:none;font-weight:bold}
+.steps-list{list-style:none;padding:0!important;counter-reset:s}
+.steps-list li{counter-increment:s;position:relative;padding:12px 12px 12px 50px;margin-bottom:8px;background:var(--bg3);border-radius:10px;border-left:3px solid var(--pr)}
+.steps-list li::before{content:counter(s);position:absolute;left:12px;top:50%;transform:translateY(-50%);background:var(--pr);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:.85rem}
+.rating-section{background:var(--bg3);padding:15px;border-radius:10px;margin:15px 0;text-align:center}
+.stars{font-size:2rem;cursor:pointer}
+.star{color:#4a5568;transition:.2s}
+.star.active,.star:hover{color:#fbbf24}
+.comments-section{margin-top:20px;padding:18px;background:var(--bg3);border-radius:12px}
+.comment-input{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.comment-input input{flex:1;min-width:140px;padding:10px 14px;border-radius:20px;border:1px solid var(--cb);background:var(--bg2);color:var(--tx);outline:none}
+.comment-input button{background:var(--pr);color:#fff;border:none;padding:10px 18px;border-radius:20px;cursor:pointer;font-weight:bold}
+.comment-item{background:var(--bg2);padding:10px 14px;border-radius:10px;margin-bottom:8px;border-left:3px solid var(--pr)}
+.comment-item .name{font-weight:bold;color:var(--pr);font-size:.9rem}
+.comment-item .time{font-size:.7rem;color:var(--td)}
+.close-btn{position:absolute;top:15px;right:20px;background:#ef4444;color:#fff;border:none;width:36px;height:36px;border-radius:50%;font-size:1.1rem;cursor:pointer;font-weight:bold;z-index:10}
+footer{background:#0d1117;color:var(--td);text-align:center;padding:25px;font-size:.9rem;border-top:1px solid var(--cb)}
+.no-result{grid-column:1/-1;text-align:center;padding:40px;color:var(--td);font-size:1.1rem}
+.info-banner{background:var(--bg2);padding:18px;border-radius:12px;margin:15px 20px;text-align:center;border-left:5px solid var(--pr);font-size:.9rem}
+.progress-tracker{background:var(--bg2);padding:18px;margin:15px 20px;border-radius:12px;border:1px solid var(--cb)}
+.progress-bar{height:10px;background:var(--bg3);border-radius:5px;overflow:hidden;margin-top:8px}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--pr),var(--pr2));width:0%;transition:.5s}
+@media print{.top-bar,nav,.search-box,.categories,.sort-bar,.action-buttons,.close-btn,footer,.comments-section,.rating-section{display:none!important}body{background:#fff;color:#000}}
+@media(max-width:600px){header h1{font-size:1.5rem}nav a{margin:0 2px;font-size:.75rem;padding:6px 8px}.search-box input{width:90%}.modal{padding:20px}.projects-list{padding:12px}.top-btn{padding:5px 8px;font-size:.75rem}.modal-icon{font-size:2.5rem}}
 </style>
 </head>
 <body class="dark">
 
 <div class="top-bar">
-    <div class="logo">⚡ Masudurrahman</div>
-    <div class="actions">
+    <div class="logo">⚡ PhysicsModels</div>
+    <div>
         <button class="top-btn" onclick="toggleTheme()" id="themeBtn">☀️ Light</button>
         <button class="top-btn" onclick="showFavorites()" id="favBtn">❤️ Favorites</button>
     </div>
@@ -371,7 +118,7 @@ footer {
 
 <header>
     <h1>🔧 Physics Working Models</h1>
-    <p>RC Car • Robots • Alarms • Gadgets — 50+ Real Working Projects</p>
+    <p>150 Real Working Projects — RC Car • Robots • Alarms • Gadgets</p>
 </header>
 
 <nav>
@@ -385,22 +132,22 @@ footer {
 </nav>
 
 <div class="hero-stats">
-    <div class="stat-card"><h3>50+</h3><p>Working Projects</p></div>
-    <div class="stat-card"><h3>₹1200</h3><p>Total Components</p></div>
+    <div class="stat-card"><h3 id="totalCount">150</h3><p>Working Projects</p></div>
+    <div class="stat-card"><h3>₹1500</h3><p>Components Cost</p></div>
     <div class="stat-card"><h3>100%</h3><p>Physics Based</p></div>
     <div class="stat-card"><h3 id="favCount">0</h3><p>Your Favorites</p></div>
 </div>
 
 <div class="progress-tracker">
-    <p style="display:flex;justify-content:space-between;">
-        <span>📊 Your Learning Progress</span>
-        <span id="progressText">0 / 50 completed</span>
+    <p style="display:flex;justify-content:space-between;font-size:.9rem">
+        <span>📊 Your Progress</span>
+        <span id="progressText">0 / 150 completed</span>
     </p>
     <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
 </div>
 
 <div class="info-banner">
-    <p>💡 <strong>Tip:</strong> Ye sab projects Arduino/Electronics se banate hain. Har project mein <strong>circuit diagram, code, video tutorial, aur physics concept</strong> diya gaya hai.</p>
+    💡 <strong>Tip:</strong> Har project mein components, steps, physics concept, Arduino code aur video tutorial link diya gaya hai. Project card par click karo.
 </div>
 
 <section class="search-box">
@@ -411,10 +158,10 @@ footer {
 
 <section class="sort-bar">
     <button class="sort-btn active" onclick="sortBy('default',this)">Default</button>
-    <button class="sort-btn" onclick="sortBy('easy',this)">🟢 Easy First</button>
-    <button class="sort-btn" onclick="sortBy('hard',this)">🔴 Hard First</button>
-    <button class="sort-btn" onclick="sortBy('cost-low',this)">💰 Cost: Low-High</button>
-    <button class="sort-btn" onclick="sortBy('cost-high',this)">💰 Cost: High-Low</button>
+    <button class="sort-btn" onclick="sortBy('easy',this)">🟢 Easy</button>
+    <button class="sort-btn" onclick="sortBy('hard',this)">🔴 Hard</button>
+    <button class="sort-btn" onclick="sortBy('cost-low',this)">💰 Low-High</button>
+    <button class="sort-btn" onclick="sortBy('cost-high',this)">💰 High-Low</button>
 </section>
 
 <section class="projects-list">
@@ -423,9 +170,8 @@ footer {
 </section>
 
 <footer>
-    <p>© 2025 Physics Working Models | Arduino + Electronics Projects</p>
-    <p style="margin-top:8px;font-size:0.85rem;">💡 Learn Electronics • Build Gadgets • Understand Physics</p>
-    <p style="margin-top:12px;font-size:0.8rem;">Made by masudurrahman.with ❤️ for Class 8-10 Students</p>
+    <p>© 2025 Physics Working Models | Made for Class 8-10 Students</p>
+    <p style="margin-top:6px;font-size:.8rem">💡 Learn Electronics • Build Gadgets • Understand Physics</p>
 </footer>
 
 <div class="modal-overlay" id="modalOverlay">
@@ -433,536 +179,210 @@ footer {
 </div>
 
 <script>
-/* =========================================================
-   FULL PROJECTS DATABASE (50 Projects)
-   ========================================================= */
+/* ============ PROJECTS DATA ============ */
 const projects = [
-/* VEHICLES */
-{ id:1, name:"RC Car (Remote Control Car)", cat:"Vehicles", level:"Medium", time:"4-6 hours", cost:800, icon:"🚗",
-  concept:"Wireless Communication, Motor Control, Newton's Laws",
-  image:"https://images.unsplash.com/photo-1594787318286-3d835c1d207f?w=800&q=80",
-  video:"https://www.youtube.com/embed/hM1G6g0eS5g",
-  materials:["Arduino Uno","L293D Motor Driver","4 BO Motors","4 Wheels","Chassis","9V Battery","RF Transmitter + Receiver","Jumper Wires"],
-  steps:["Chassis par 4 motors ko screw se fix karo.","Har motor mein wheel lagao.","L293D motor driver ko chassis par tape se chipka do.","Arduino ko motor driver ke upar mount karo.","Motor driver ke OUT1-OUT4 ko motors se jodo.","Arduino ke pins 9,10,11,13 ko driver ke IN1-IN4 se jodo.","RF receiver ke 4 output pins Arduino ke pins 2,3,4,5 se jodo.","Battery + terminal ko Arduino VIN aur driver 12V mein do.","Common ground sabka jodo.","Arduino mein RC car ka code upload karo.","Remote ke buttons press karke test karo."],
-  physics:"Motor current se magnetic field banata hai (Fleming's Left Hand Rule). DC motor electrical energy ko mechanical energy mein convert karta hai. Newton's Third Law se car aage badhti hai.",
-  code:"// RC Car Arduino Code\nint motorA1=9, motorA2=10, motorB1=11, motorB2=13;\nint fwd=2, bwd=3, lft=4, rgt=5;\nvoid setup(){\n  pinMode(motorA1,OUTPUT);\n  pinMode(motorA2,OUTPUT);\n  pinMode(motorB1,OUTPUT);\n  pinMode(motorB2,OUTPUT);\n  pinMode(fwd,INPUT);\n  pinMode(bwd,INPUT);\n  pinMode(lft,INPUT);\n  pinMode(rgt,INPUT);\n}\nvoid loop(){\n  if(digitalRead(fwd)) forward();\n  if(digitalRead(bwd)) backward();\n  if(digitalRead(lft)) left();\n  if(digitalRead(rgt)) right();\n}" },
-
-{ id:2, name:"Bluetooth Car (Mobile Control)", cat:"Vehicles", level:"Medium", time:"4 hours", cost:900, icon:"📱",
-  concept:"Bluetooth Communication, Motor Control",
-  image:"https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
-  video:"https://www.youtube.com/embed/QlQe-DpKxrY",
-  materials:["Arduino Uno","HC-05 Bluetooth Module","L293D Motor Driver","4 Motors + Wheels","Chassis","Battery","Jumper Wires","Android Phone"],
-  steps:["Chassis par motors + wheels fix karo.","L293D driver ko mount karo.","Arduino ko upar tape se chipka do.","HC-05 ke TX → Arduino RX (pin 0).","HC-05 ke RX → Arduino TX (pin 1) via voltage divider.","HC-05 VCC → 5V, GND → GND.","Motors ko driver se jodo jaise RC car mein.","Driver input pins Arduino ke 9,10,11,13 se jodo.","Code upload karo.","Phone mein 'Bluetooth RC Controller' app install karo.","HC-05 pair karo (password: 1234 ya 0000).","App se arrow buttons press karke car chalao."],
-  physics:"Bluetooth radio waves (2.4 GHz) use karta hai. Arduino signals ko motor commands mein convert karta hai. Electrical → Mechanical energy.",
-  code:"#include <SoftwareSerial.h>\nSoftwareSerial BT(0,1);\nvoid setup(){ BT.begin(9600); }\nvoid loop(){\n  if(BT.available()){\n    char c = BT.read();\n    if(c=='F') forward();\n    if(c=='B') backward();\n    if(c=='L') left();\n    if(c=='R') right();\n    if(c=='S') stopCar();\n  }\n}" },
-
-{ id:3, name:"Line Follower Car", cat:"Vehicles", level:"Medium", time:"3 hours", cost:700, icon:"🛤️",
-  concept:"IR Reflection, Sensors, Automation",
-  image:"https://images.unsplash.com/photo-1567789884554-0b844b597180?w=800&q=80",
-  video:"https://www.youtube.com/embed/HJXAtcO1xZ4",
-  materials:["Arduino Uno","2 IR Sensors","L293D Driver","2-4 Motors","Wheels","Chassis","Battery","Black Tape"],
-  steps:["White chart paper par black tape se track banao.","Chassis par motors + wheels lagao.","2 IR sensors ko aage niche mount karo.","IR sensors ke OUT pins Arduino ke A0, A1 se jodo.","L293D motors se jodo.","IR sensor VCC=5V, GND=GND.","Arduino code upload karo.","Car ko track par rakho - khud chalegi!","Left sensor black detect kare → right turn.","Right sensor black detect kare → left turn."],
-  physics:"IR LED light bhejta hai. White surface reflect karti hai, black absorb karti hai. Ye difference sensor detect karta hai.",
-  code:"int L=A0, R=A1;\nvoid loop(){\n  int l=digitalRead(L);\n  int r=digitalRead(R);\n  if(l==0 && r==0) forward();\n  else if(l==1) right();\n  else if(r==1) left();\n  else stopCar();\n}" },
-
-{ id:4, name:"Obstacle Avoiding Car", cat:"Vehicles", level:"Hard", time:"5 hours", cost:1100, icon:"🚙",
-  concept:"Ultrasonic Sound Waves, Automation",
-  image:"https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=800&q=80",
-  video:"https://www.youtube.com/embed/6hMnpgHhNLg",
-  materials:["Arduino Uno","HC-SR04 Ultrasonic Sensor","L293D Driver","Servo Motor","4 Motors + Wheels","Chassis","Battery"],
-  steps:["Chassis assemble karo (motors + wheels).","Ultrasonic sensor ko servo motor par mount karo.","Servo ko chassis ke aage screw karo.","HC-SR04 Trig → Arduino pin 12, Echo → pin 11.","Servo signal → Arduino pin 10.","L293D motor driver jodo.","Code upload karo.","Car aage chalegi. Rukawat milegi to ruk kar scan karegi.","Khali raasta milne par aage badhegi."],
-  physics:"Ultrasonic sensor 40kHz sound waves bhejta hai. Object se reflect hokar wapas aati hain. Time × Speed of Sound / 2 = Distance.",
-  code:"#include <Servo.h>\nServo s;\nint trig=12, echo=11;\nlong distance(){\n  digitalWrite(trig,LOW); delayMicroseconds(2);\n  digitalWrite(trig,HIGH); delayMicroseconds(10);\n  digitalWrite(trig,LOW);\n  long t=pulseIn(echo,HIGH);\n  return t*0.034/2;\n}" },
-
-{ id:5, name:"Voice Control Car", cat:"Vehicles", level:"Hard", time:"6 hours", cost:1500, icon:"🎤",
-  concept:"Voice Recognition, Bluetooth, Motor Control",
-  image:"https://images.unsplash.com/photo-1589254065878-42c9da997008?w=800&q=80",
-  video:"https://www.youtube.com/embed/7sYdHdSTnYA",
-  materials:["Arduino Uno","HC-05 Bluetooth","Android Phone","L293D","Motors + Chassis","Battery"],
-  steps:["Sab hardware assemble karo.","Phone mein 'Arduino Voice Control' app install karo.","App ko HC-05 se connect karo.","App mein commands set karo.","App voice ko text mein convert karke Bluetooth se bhejega.","Arduino commands receive karke motors chalayega.","Bolo 'forward' - car chalegi!"],
-  physics:"Voice → Sound waves → Phone mic → Digital signal → Bluetooth radio waves → Arduino → Motor current.",
-  code:"// Same as Bluetooth Car - commands F/B/L/R" },
-
-{ id:6, name:"Gesture Control Car", cat:"Vehicles", level:"Hard", time:"5 hours", cost:1400, icon:"👋",
-  concept:"Accelerometer, Wireless, Motion Detection",
-  image:"https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["2 Arduino","MPU6050 Accelerometer","nRF24L01 Wireless Module","L293D","Motors + Chassis"],
-  steps:["Car mein Arduino + motors + receiver module lagao.","Glove par Arduino + MPU6050 + transmitter lagao.","Dono Arduino mein matching code upload karo.","Haath tilt karo aage → car aage.","Haath tilt karo peeche → car peeche.","Haath rotate karo → car turn."],
-  physics:"MPU6050 accelerometer tilt detect karta hai (gravity direction). nRF24L01 radio waves se data bhejta hai.",
-  code:"// Glove: read MPU6050 angle, send via nRF24\n// Car: receive angle, control motors" },
-
-{ id:7, name:"Wireless Robot Car (RF)", cat:"Vehicles", level:"Medium", time:"4 hours", cost:900, icon:"📡",
-  concept:"RF Communication, Encoder/Decoder",
-  image:"https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&q=80",
-  video:"https://www.youtube.com/embed/hM1G6g0eS5g",
-  materials:["Arduino Uno","433MHz RF Transmitter","433MHz RF Receiver","HT12E Encoder","HT12D Decoder","L293D","Motors","Remote Box"],
-  steps:["Transmitter: 4 push buttons + HT12E + RF Transmitter ek remote box mein banao.","Receiver: RF Receiver + HT12D + Arduino car mein lagao.","Buttons press karne par coded signal transmit hoga.","Car mein receiver decode karke motors chalayega.","4 buttons = 4 directions."],
-  physics:"RF module 433 MHz radio waves bhejta hai. HT12E/HT12D data encode/decode karte hain.",
-  code:"// Receiver: HT12D outputs → Arduino pins → motors" },
-
-{ id:8, name:"Solar Car", cat:"Vehicles", level:"Easy", time:"3 hours", cost:600, icon:"☀️",
-  concept:"Photovoltaic Effect, Solar Energy",
-  image:"https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80",
-  video:"https://www.youtube.com/embed/UzD8bQFr6Sk",
-  materials:["Solar Panel (6V)","DC Motor","Wheels","Chassis","Wires"],
-  steps:["Chassis par motor + wheels lagao.","Solar panel ko upar mount karo.","Panel ke +ve wire motor ke +ve, -ve to -ve.","Dhoop mein rakho - car chalegi!","Chhaya karne par ruk jayegi."],
-  physics:"Solar panel photons ko absorb karke electrons release karta hai (photovoltaic effect). Ye DC current motor ko chalata hai.",
-  code:"// No code needed - direct connection!" },
-
-{ id:9, name:"Fire Fighting Robot", cat:"Vehicles", level:"Hard", time:"8 hours", cost:2000, icon:"🔥",
-  concept:"Flame Sensor, Water Pump, Automation",
-  image:"https://images.unsplash.com/photo-1581092918484-8313d3d3e5d6?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","3 Flame Sensors","L293D","Water Pump","Relay Module","Motors + Chassis","Battery","Small Water Tank"],
-  steps:["Chassis par motors + wheels lagao.","3 flame sensors left, center, right mount karo.","Water pump + relay ko tank ke saath lagao.","Sensors Arduino ke A0,A1,A2 se jodo.","Relay Arduino pin 8 se jodo.","Code upload karo.","Aag detect hone par robot us direction mein jayega.","Paas pahunch kar pump ON karke pani spray karega."],
-  physics:"Flame sensor IR radiation detect karta hai (aag se infrared nikalta hai). Robot use direction mein move karta hai.",
-  code:"// Fire Fighting\n// Read 3 flame sensors, move toward fire" },
-
-{ id:10, name:"Pick & Place Robot", cat:"Vehicles", level:"Hard", time:"8 hours", cost:2500, icon:"🦾",
-  concept:"Servo Motors, Robotic Arm, Control",
-  image:"https://images.unsplash.com/photo-1563207153-f403bf289096?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","4 Servo Motors","Robotic Arm Kit","Bluetooth HC-05","Battery","Smartphone"],
-  steps:["Robotic arm kit assemble karo.","Har joint par servo motor lagao.","Servo signal wires Arduino pins 3,5,6,9 se jodo.","Servo power external 5V 2A se do.","Bluetooth HC-05 jodo.","Phone app se har servo ka angle control karo.","Object utha kar dusri jagah rakho."],
-  physics:"Servo motor PWM signal se specific angle par rukta hai. Gear train torque badhata hai.",
-  code:"#include <Servo.h>\nServo s1,s2,s3,s4;\nvoid loop(){\n  // Read BT commands, set servo angles\n}" },
-
-/* ALARMS */
-{ id:11, name:"Fire Alarm", cat:"Alarms", level:"Easy", time:"2 hours", cost:300, icon:"🔥",
-  concept:"Flame Detection, Alarm Circuit",
-  image:"https://images.unsplash.com/photo-1583243552802-94ccb9d9e906?w=800&q=80",
-  video:"https://www.youtube.com/embed/g2H6R_q3r2M",
-  materials:["Arduino Uno","Flame Sensor","Buzzer","LED","Resistor","Battery"],
-  steps:["Flame sensor ke VCC=5V, GND=GND, OUT=Arduino A0.","Buzzer +ve = Arduino pin 8, -ve = GND.","LED +ve = pin 9 via 220Ω resistor.","Code upload karo.","Matchstick jalao aur sensor ke paas lao.","Buzzer bajega + LED jalega!"],
-  physics:"Flame sensor IR (infrared) radiation detect karta hai jo aag se nikalta hai. Arduino signal ko buzzer command mein convert karta hai.",
-  code:"void setup(){ pinMode(8,OUTPUT); pinMode(9,OUTPUT); }\nvoid loop(){\n  int f=analogRead(A0);\n  if(f>500){ digitalWrite(8,HIGH); digitalWrite(9,HIGH); }\n  else { digitalWrite(8,LOW); digitalWrite(9,LOW); }\n}" },
-
-{ id:12, name:"Gas Leak Alarm", cat:"Alarms", level:"Medium", time:"3 hours", cost:500, icon:"💨",
-  concept:"Gas Sensor, Safety System",
-  image:"https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80",
-  video:"https://www.youtube.com/embed/3_rf2TKR9S4",
-  materials:["Arduino Uno","MQ-2 Gas Sensor","Buzzer","LED","Battery"],
-  steps:["MQ-2 ke VCC=5V, GND=GND, A0=Arduino A0.","Buzzer pin 8 se, LED pin 9 se.","Code upload karo.","Lighter gas chhodo sensor ke paas.","Buzzer bajega - gas leak detected!"],
-  physics:"MQ-2 sensor gas molecules ko absorb karke resistance change karta hai.",
-  code:"if(analogRead(A0) > 400) alarmON();" },
-
-{ id:13, name:"Water Level Indicator", cat:"Alarms", level:"Easy", time:"2 hours", cost:250, icon:"💧",
-  concept:"Conductivity, Water Detection",
-  image:"https://images.unsplash.com/photo-1544302027-7c4d3e5c4f5e?w=800&q=80",
-  video:"https://www.youtube.com/embed/5M2Ux2i5Y7c",
-  materials:["Arduino Uno","Wires (probes)","LEDs","Buzzer","Battery","Container"],
-  steps:["Container mein different levels par wires fix karo.","Har wire Arduino ke different pin se jodo.","LEDs bhi Arduino se jodo.","Pani bharao - level badhne par LEDs jalengi.","Top level par buzzer bajega."],
-  physics:"Pani conductor hai. Level badhne par circuit complete hota hai.",
-  code:"if(digitalRead(2)) digitalWrite(9,HIGH);\nif(digitalRead(3)) digitalWrite(10,HIGH);" },
-
-{ id:14, name:"Burglar Alarm", cat:"Alarms", level:"Easy", time:"2 hours", cost:300, icon:"🚨",
-  concept:"LDR, Light Detection",
-  image:"https://images.unsplash.com/photo-1558002038-1055907df827?w=800&q=80",
-  video:"https://www.youtube.com/embed/C8sJ8sS5dRk",
-  materials:["Arduino Uno","LDR","10k Resistor","Buzzer","LED","Battery"],
-  steps:["LDR + 10k resistor se voltage divider banao.","Middle point Arduino A0 se jodo.","Buzzer pin 8 se, LED pin 9 se.","Code upload karo.","Torch se LDR par light daalo.","Light hatao - alarm bajega!"],
-  physics:"LDR ki resistance light par depend karti hai.",
-  code:"if(analogRead(A0) < 300) alarmON();" },
-
-{ id:15, name:"Laser Security Alarm", cat:"Alarms", level:"Medium", time:"3 hours", cost:400, icon:"🔦",
-  concept:"Laser Light, LDR, Security",
-  image:"https://images.unsplash.com/photo-1581092335878-2d9ff86ca2bf?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Laser Diode","LDR","Arduino Uno","Buzzer","Resistors","Battery"],
-  steps:["Laser ko ek wall par fix karo.","LDR ko opposite wall par lagao.","Laser LDR par focus karo.","LDR + resistor voltage divider banao.","Arduino se buzzer connect karo.","Laser beam ke beech aane par alarm bajta hai."],
-  physics:"Laser monochromatic light hai. LDR resistance light se badalti hai.",
-  code:"if(analogRead(A0) < 400) digitalWrite(8,HIGH);" },
-
-{ id:16, name:"Motion Detector Alarm", cat:"Alarms", level:"Medium", time:"3 hours", cost:450, icon:"👁️",
-  concept:"PIR Sensor, Infrared Detection",
-  image:"https://images.unsplash.com/photo-1558002038-1055907df827?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","PIR Sensor","Buzzer","LED","Battery"],
-  steps:["PIR VCC=5V, GND=GND, OUT=Arduino pin 2.","Buzzer pin 8, LED pin 9.","Code upload karo.","Sensor ke saamne haath hilao - alarm bajega!","5 second baad auto-off."],
-  physics:"PIR sensor infrared radiation detect karta hai. Insaan ke body se IR nikalta hai.",
-  code:"if(digitalRead(2)==HIGH) { tone(8, 1000); }" },
-
-{ id:17, name:"Darkness Detector Light", cat:"Alarms", level:"Easy", time:"2 hours", cost:250, icon:"🌙",
-  concept:"LDR, Automatic Lighting",
-  image:"https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","LDR","10k Resistor","LED/Relay","Battery"],
-  steps:["LDR + 10k voltage divider banao.","A0 se connect karo.","LED Arduino pin 9 se.","Code upload karo.","Raat ko light khud jalegi, din mein band."],
-  physics:"LDR resistance light par depend karti hai.",
-  code:"if(analogRead(A0) < 300) digitalWrite(9,HIGH);" },
-
-{ id:18, name:"Rain Alarm", cat:"Alarms", level:"Easy", time:"2 hours", cost:250, icon:"🌧️",
-  concept:"Water Conductivity",
-  image:"https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","2 Metal Plates","Buzzer","Battery","Wires"],
-  steps:["2 metal plates ko thoda gap par fix karo.","Dono plates ko Arduino se jodo.","Buzzer pin 8 se.","Code upload karo.","Pani spray karo plates par - buzzer bajega!"],
-  physics:"Pani conductor hai. Pani girne se circuit complete hota hai.",
-  code:"if(analogRead(A0) > 500) digitalWrite(8,HIGH);" },
-
-{ id:19, name:"Temperature Alarm", cat:"Alarms", level:"Easy", time:"2 hours", cost:300, icon:"🌡️",
-  concept:"Thermistor, Temperature Sensing",
-  image:"https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","LM35 Sensor","Buzzer","LED","Battery"],
-  steps:["LM35 ke pin 1=5V, pin 2=A0, pin 3=GND.","Buzzer pin 8, LED pin 9.","Code mein threshold 40°C set karo.","Heater ke paas rakho.","Threshold cross hone par alarm."],
-  physics:"LM35 har 1°C par 10mV output deta hai.",
-  code:"float t = analogRead(A0) * 0.488;\nif(t > 40) digitalWrite(8,HIGH);" },
-
-{ id:20, name:"Wireless Doorbell", cat:"Alarms", level:"Medium", time:"3 hours", cost:400, icon:"🔔",
-  concept:"RF Communication, Buzzer",
-  image:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["2 Arduino","433MHz RF Tx/Rx","Push Button","Buzzer","Battery"],
-  steps:["Door unit: Push button + Arduino + RF Transmitter.","Andar unit: RF Receiver + Arduino + Buzzer.","Dono mein code upload karo.","Button press karo - andar buzzer bajega!","Wire ki zaroorat nahi."],
-  physics:"RF transmitter 433 MHz radio waves bhejta hai.",
-  code:"// Tx: if(button) send signal\n// Rx: if(received) tone(8, 1000);" },
-
-/* ROBOTS */
-{ id:21, name:"Walking Robot", cat:"Robots", level:"Hard", time:"6 hours", cost:1200, icon:"🚶",
-  concept:"Servo Motors, Biped Walking, Balance",
-  image:"https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","4-6 Servo Motors","Robot Frame Kit","Battery"],
-  steps:["Robot frame assemble karo.","Har joint par servo lagao.","Servo signal wires Arduino pins 3,5,6,9,10,11 se jodo.","Servo power external 5V 3A se do.","Code upload - walking sequence.","Robot khud chalega!"],
-  physics:"Servo motor specific angle par rukta hai. Sequence of angles se walking motion banta hai.",
-  code:"#include <Servo.h>\nServo L1,L2,R1,R2;\nvoid walk(){\n  L1.write(30); delay(200);\n  R1.write(30); delay(200);\n}" },
-
-{ id:22, name:"Dancing Robot", cat:"Robots", level:"Medium", time:"4 hours", cost:800, icon:"💃",
-  concept:"Servo Motors, Rhythmic Motion",
-  image:"https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","4 Servo Motors","Robot Body","Buzzer","Battery"],
-  steps:["Robot body par 4 servos lagao (arms + legs).","Servo Arduino pins 3,5,6,9 se jodo.","Buzzer pin 8 se.","Music + dance code upload karo.","Robot music ke saath dance karega!"],
-  physics:"Servo angles ke sequence se dance motion banta hai.",
-  code:"void dance(){\n  for(int a=0;a<180;a+=10){ servo1.write(a); delay(50); }\n}" },
-
-{ id:23, name:"Robot Arm", cat:"Robots", level:"Hard", time:"6 hours", cost:1800, icon:"🦾",
-  concept:"Servo Motors, Torque, Control",
-  image:"https://images.unsplash.com/photo-1563207153-f403bf289096?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","4-5 Servo Motors","Robot Arm Kit","Bluetooth HC-05","Power Supply"],
-  steps:["Arm kit assemble karo.","Har joint par strong servo lagao.","Servo signals Arduino pins se jodo.","Bluetooth HC-05 add karo.","Phone app se control karo.","Object pick karo aur place karo."],
-  physics:"Servo motor torque = force × distance.",
-  code:"#include <Servo.h>\nServo base, shoulder, elbow, grip;" },
-
-{ id:24, name:"Drawing Robot", cat:"Robots", level:"Hard", time:"6 hours", cost:1500, icon:"✏️",
-  concept:"Polar Coordinates, Stepper Motors",
-  image:"https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","2 Stepper Motors","Belt + Pulley","Pen Holder","Frame","Battery"],
-  steps:["Frame banao (XY plotter style).","2 stepper motors X aur Y axis par lagao.","Belt pulley system se pen holder move karo.","Stepper drivers Arduino se jodo.","Code mein shape coordinates do.","Robot drawing banayega!"],
-  physics:"Stepper motor exact steps mein ghumta hai. CNC principle.",
-  code:"void drawLine(x1,y1,x2,y2){\n  // move stepper motors\n}" },
-
-{ id:25, name:"Cleaning Robot", cat:"Robots", level:"Medium", time:"4 hours", cost:1000, icon:"🧹",
-  concept:"Motors, Suction, Automation",
-  image:"https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","2 DC Motors + Wheels","Small Fan","Dust Container","L293D","Battery"],
-  steps:["Chassis par wheels + motors lagao.","Chhota fan chassis par lagao.","Fan ke neeche dust container fix karo.","Code upload - random movement.","Robot chalega aur dust suck karega."],
-  physics:"Fan air suction banata hai (pressure difference).",
-  code:"void loop(){\n  forward(); delay(2000);\n  turnRandom(); delay(1000);\n}" },
-
-{ id:26, name:"Spy Robot (Camera)", cat:"Robots", level:"Hard", time:"6 hours", cost:2500, icon:"🕵️",
-  concept:"Wireless Video, Camera, Control",
-  image:"https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","ESP32-CAM","L293D","Motors + Chassis","Battery"],
-  steps:["Chassis par motors + wheels lagao.","ESP32-CAM ko front par mount karo.","ESP32 ko Arduino se serial connect karo.","Code upload - WiFi hotspot banayega.","Phone se IP address kholo - live video!","Motors bhi phone se control karo."],
-  physics:"ESP32-CAM image capture karke WiFi se stream karta hai.",
-  code:"// ESP32-CAM WiFi streaming" },
-
-{ id:27, name:"Sumo Robot", cat:"Robots", level:"Hard", time:"8 hours", cost:2000, icon:"🤼",
-  concept:"Force, Sensors, Strategy",
-  image:"https://images.unsplash.com/photo-1567789884554-0b844b597180?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","4 High-Torque Motors","IR Sensors","Ultrasonic Sensor","Strong Chassis"],
-  steps:["Strong chassis banao.","4 high-speed motors lagao.","Front par ultrasonic + IR sensors lagao.","Code: enemy detect karo, push karo.","Arena mein do robots ladenge."],
-  physics:"Force = mass × acceleration.",
-  code:"if(enemyDetected) { fullSpeedForward(); }" },
-
-{ id:28, name:"Soccer Robot", cat:"Robots", level:"Hard", time:"8 hours", cost:2200, icon:"⚽",
-  concept:"Ball Tracking, Kicking Mechanism",
-  image:"https://images.unsplash.com/photo-1581092335878-2d9ff86ca2bf?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","Motors + Wheels","IR Ball Sensor","Kicking Servo","Chassis"],
-  steps:["Chassis par motors lagao.","IR sensor se special ball track karo.","Ball detect hone par us direction jao.","Paas pahunch kar servo se kick maro.","Goal mein daalo!"],
-  physics:"IR sensor ball ke infrared signature detect karta hai.",
-  code:"if(ballDetected) { moveTowardBall(); if(close) kick(); }" },
-
-/* GADGETS */
-{ id:29, name:"Automatic Street Light", cat:"Gadgets", level:"Easy", time:"2 hours", cost:300, icon:"💡",
-  concept:"LDR, Automatic Control",
-  image:"https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","LDR","Relay Module","LED/Bulb","Resistor","Battery"],
-  steps:["LDR + 10k voltage divider A0 se jodo.","Relay Arduino pin 8 se jodo.","Bulb relay ke through jodo.","Code upload karo.","Din mein bulb OFF, raat mein khud ON!"],
-  physics:"LDR light-sensitive hai.",
-  code:"if(analogRead(A0) < 300) digitalWrite(8,HIGH);" },
-
-{ id:30, name:"Automatic Door", cat:"Gadgets", level:"Medium", time:"4 hours", cost:900, icon:"🚪",
-  concept:"PIR Sensor, Servo Motor",
-  image:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","PIR Sensor","Servo Motor","Door Frame","Battery"],
-  steps:["PIR sensor door ke upar mount karo.","Servo ko door hinge par lagao.","PIR OUT → Arduino pin 2.","Servo signal → Arduino pin 9.","Koi paas aaya → door khulega."],
-  physics:"PIR sensor body heat detect karta hai.",
-  code:"if(digitalRead(2)) { door.write(90); delay(5000); door.write(0); }" },
-
-{ id:31, name:"Smart Dustbin", cat:"Gadgets", level:"Medium", time:"4 hours", cost:1000, icon:"🗑️",
-  concept:"Ultrasonic Sensor, Servo",
-  image:"https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","HC-SR04","Servo Motor","Dustbin","Battery"],
-  steps:["Ultrasonic sensor dustbin ke top par mount karo.","Servo ko lid par lagao.","HC-SR04 → Arduino pins 11, 12.","Servo → Arduino pin 9.","Haath paas lao → lid khulegi."],
-  physics:"Ultrasonic sensor distance measure karta hai.",
-  code:"if(distance()<20) lid.write(90); else lid.write(0);" },
-
-{ id:32, name:"Automatic Fan (Temp Based)", cat:"Gadgets", level:"Medium", time:"3 hours", cost:500, icon:"🌀",
-  concept:"Temperature Sensor, Relay",
-  image:"https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","LM35","Relay Module","DC Fan","Battery"],
-  steps:["LM35 → Arduino A0.","Relay → Arduino pin 8.","Fan relay ke through power do.","Threshold 30°C set karo.","Garam hone par fan khud chalega!"],
-  physics:"LM35 temperature ko voltage mein convert karta hai.",
-  code:"if(analogRead(A0)*0.488 > 30) digitalWrite(8,HIGH);" },
-
-{ id:33, name:"Clap Switch Light", cat:"Gadgets", level:"Medium", time:"3 hours", cost:400, icon:"👏",
-  concept:"Sound Sensor, Switch",
-  image:"https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","Sound Sensor","Relay","Bulb","Battery"],
-  steps:["Sound sensor OUT → Arduino pin 2.","Relay → Arduino pin 8.","Code upload - clap detect kare.","Ek clap → light ON.","Dusra clap → light OFF."],
-  physics:"Sound sensor microphone se vibrations detect karta hai.",
-  code:"if(digitalRead(2)) { state=!state; digitalWrite(8,state); delay(500); }" },
-
-{ id:34, name:"Touch Switch", cat:"Gadgets", level:"Easy", time:"2 hours", cost:250, icon:"👆",
-  concept:"Capacitive Touch",
-  image:"https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","Touch Sensor TTP223","LED/Relay","Battery"],
-  steps:["Touch sensor VCC=5V, GND=GND, OUT=Arduino pin 2.","LED pin 9 se.","Code upload karo.","Sensor touch karo - LED jalega."],
-  physics:"Capacitive touch sensor body ki capacitance detect karta hai.",
-  code:"if(digitalRead(2)) digitalWrite(9,HIGH);" },
-
-{ id:35, name:"PIR Light", cat:"Gadgets", level:"Easy", time:"2 hours", cost:350, icon:"🚶",
-  concept:"Motion Detection",
-  image:"https://images.unsplash.com/photo-1558002038-1055907df827?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","PIR Sensor","LED Strip","Relay","Battery"],
-  steps:["PIR OUT → Arduino pin 2.","Relay → pin 8. Bulb relay se.","Code upload karo.","Koi aaya → light ON, 10 sec baad OFF."],
-  physics:"PIR sensor infrared changes detect karta hai.",
-  code:"if(digitalRead(2)) { digitalWrite(8,HIGH); delay(10000); digitalWrite(8,LOW); }" },
-
-{ id:36, name:"Bluetooth Speaker", cat:"Gadgets", level:"Medium", time:"4 hours", cost:700, icon:"🔊",
-  concept:"Bluetooth Audio, Amplifier",
-  image:"https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Bluetooth Audio Module","PAM8403 Amplifier","Speaker (4Ω 3W)","Battery"],
-  steps:["Bluetooth module output → Amplifier input.","Amplifier output → Speaker.","Battery se power do.","Phone se Bluetooth pair karo.","Music play karo!"],
-  physics:"Bluetooth digital audio receive karta hai. Speaker electromagnetic induction se sound banata hai.",
-  code:"// Hardware only" },
-
-{ id:37, name:"FM Radio", cat:"Gadgets", level:"Hard", time:"6 hours", cost:1000, icon:"📻",
-  concept:"Radio Waves, Demodulation",
-  image:"https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","TEA5767 FM Module","Amplifier","Speaker","Antenna"],
-  steps:["TEA5767 module I2C se Arduino se jodo (A4=SDA, A5=SCL).","Audio output amplifier se jodo.","Speaker amplifier output se.","Antenna wire connect karo.","Code upload - frequency set karo."],
-  physics:"FM radio electromagnetic waves receive karta hai.",
-  code:"#include <Wire.h>" },
-
-{ id:38, name:"Mini Fan", cat:"Gadgets", level:"Easy", time:"1 hour", cost:150, icon:"💨",
-  concept:"DC Motor, Electrical Energy",
-  image:"https://images.unsplash.com/photo-1585155770447-2f66e2a397b5?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["DC Motor","Fan Blade","AA Battery","Switch","Wires"],
-  steps:["Fan blade motor shaft par lagao.","Motor ke +ve wire switch se, -ve battery se.","Switch se battery se jodo.","Switch ON karo - fan chalega!"],
-  physics:"Motor current se magnetic field banata hai.",
-  code:"// No code - direct hardware" },
-
-{ id:39, name:"Emergency Light", cat:"Gadgets", level:"Medium", time:"3 hours", cost:400, icon:"🔋",
-  concept:"Battery Backup, Relay",
-  image:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","Relay","LED Strip","Rechargeable Battery","Charging Circuit"],
-  steps:["Battery ko charging circuit se jodo.","Relay se main power detect karo.","Main power jaate hi relay battery se LED chalu karega.","Light jaane par emergency light khud jalegi!"],
-  physics:"Relay automatic switch ka kaam karta hai.",
-  code:"if(!mainPower()) digitalWrite(8,HIGH);" },
-
-{ id:40, name:"Solar Mobile Charger", cat:"Gadgets", level:"Medium", time:"3 hours", cost:500, icon:"🔌",
-  concept:"Solar Energy, Voltage Regulation",
-  image:"https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Solar Panel (6V 5W)","LM7805 Regulator","USB Port","Diode","Capacitor"],
-  steps:["Solar panel output ko diode se jodo.","LM7805 regulator se 5V stable karo.","Capacitor filter lagao.","USB female port connect karo.","Dhoop mein rakho - phone charge karo!"],
-  physics:"Solar panel photons ko electrons mein convert karta hai.",
-  code:"// Hardware only" },
-
-/* FUN & GAMES */
-{ id:41, name:"Traffic Light Model", cat:"Fun", level:"Easy", time:"2 hours", cost:200, icon:"🚦",
-  concept:"Timers, Sequential Logic",
-  image:"https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","3 LEDs","Resistors","Battery"],
-  steps:["3 LEDs ko Arduino pins 8,9,10 se jodo.","Code upload karo.","Red 5 sec, Yellow 2 sec, Green 5 sec.","Real traffic light jaisa."],
-  physics:"Time sequence logic se LEDs control hoti hain.",
-  code:"void loop(){\n  digitalWrite(8,HIGH); delay(5000);\n  digitalWrite(9,HIGH); delay(2000);\n  digitalWrite(10,HIGH); delay(5000);\n}" },
-
-{ id:42, name:"Electronic Dice", cat:"Fun", level:"Easy", time:"2 hours", cost:250, icon:"🎲",
-  concept:"Random Numbers, Display",
-  image:"https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","7 LEDs","Push Button","Resistors","Battery"],
-  steps:["7 LEDs ko dice pattern mein arrange karo.","Push button pin 2 se.","Code upload - random 1-6.","Button press karo - dice roll hoga!"],
-  physics:"Arduino random() se random number generate karta hai.",
-  code:"if(digitalRead(2)){ int n = random(1,7); showNumber(n); }" },
-
-{ id:43, name:"Musical Doorbell", cat:"Fun", level:"Easy", time:"2 hours", cost:300, icon:"🎵",
-  concept:"Sound Frequency, Buzzer",
-  image:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","Buzzer","Push Button","Battery"],
-  steps:["Buzzer pin 8 se, button pin 2 se.","Code mein different tones set karo.","Button press karo - melody bajegi!"],
-  physics:"Buzzer different frequencies par different notes produce karta hai.",
-  code:"if(digitalRead(2)){\n  tone(8, 262); delay(300);\n  tone(8, 330); delay(300);\n}" },
-
-{ id:44, name:"LED Chaser", cat:"Fun", level:"Easy", time:"1.5 hours", cost:200, icon:"✨",
-  concept:"Sequential Logic, Timing",
-  image:"https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","8 LEDs","Resistors","Battery"],
-  steps:["8 LEDs ko pins 2-9 se jodo.","Code upload karo.","LEDs ek ke baad ek jalengi."],
-  physics:"Sequential digital output se pattern banta hai.",
-  code:"for(int i=2;i<=9;i++){\n  digitalWrite(i,HIGH); delay(100);\n  digitalWrite(i,LOW);\n}" },
-
-{ id:45, name:"Police Siren", cat:"Fun", level:"Easy", time:"1.5 hours", cost:200, icon:"🚔",
-  concept:"Frequency Modulation",
-  image:"https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","Buzzer","LEDs","Battery"],
-  steps:["Buzzer pin 8 se, LEDs pins 9,10 se.","Code upload - frequency sweep.","Siren sound + alternating LEDs!"],
-  physics:"Frequency upar-neeche karne se siren sound banti hai.",
-  code:"for(int f=500;f<1500;f+=10){ tone(8,f); delay(5); }" },
-
-{ id:46, name:"Metal Detector", cat:"Fun", level:"Medium", time:"4 hours", cost:600, icon:"🔍",
-  concept:"Electromagnetic Induction, Eddy Currents",
-  image:"https://images.unsplash.com/photo-1581092335878-2d9ff86ca2bf?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","Coil","Capacitor","Buzzer","LED"],
-  steps:["Copper wire se 100 turns ka coil banao.","Coil + capacitor se LC oscillator banao.","Arduino frequency measure kare.","Metal paas laao - frequency change.","Buzzer bajega!"],
-  physics:"Metal ke paas jaane par eddy currents banti hain.",
-  code:"// Measure LC oscillator frequency" },
-
-{ id:47, name:"Lie Detector", cat:"Fun", level:"Hard", time:"5 hours", cost:800, icon:"🎭",
-  concept:"Galvanic Skin Response",
-  image:"https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","2 Metal Plates","10k Resistor","LED Bar","Buzzer"],
-  steps:["2 metal plates ko fingers par lagao.","Arduino resistance measure kare.","Normal vs stressed resistance different.","LED bar display karega."],
-  physics:"Stress se sweating badhti hai jo skin resistance kam karti hai.",
-  code:"int r = analogRead(A0);" },
-
-{ id:48, name:"Electronic Quiz Board", cat:"Fun", level:"Medium", time:"4 hours", cost:600, icon:"❓",
-  concept:"Circuit Logic, Conduction",
-  image:"https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","Cardboard","Wires","LED","Buzzer","Battery"],
-  steps:["Cardboard par questions + answers likho.","Correct answer wire se jodo.","Arduino se circuit banao.","Correct answer par LED + buzzer ON."],
-  physics:"Correct connection circuit complete karta hai.",
-  code:"if(digitalRead(2)) { digitalWrite(9,HIGH); tone(8,1000); }" },
-
-{ id:49, name:"Digital Clock", cat:"Fun", level:"Medium", time:"4 hours", cost:700, icon:"🕐",
-  concept:"RTC, Seven Segment Display",
-  image:"https://images.unsplash.com/photo-1495364141860-b0d03eccd065?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["Arduino Uno","DS3231 RTC","7-Segment Display","Battery"],
-  steps:["RTC I2C se Arduino se jodo.","7-segment display pins jodo.","Code upload karo.","Time display hoga."],
-  physics:"RTC crystal oscillator se precise time rakhta hai.",
-  code:"#include <RTClib.h>\nRTC_DS3231 rtc;" },
-
-{ id:50, name:"Wireless Robot with Camera", cat:"Fun", level:"Hard", time:"10 hours", cost:3000, icon:"📹",
-  concept:"WiFi, Camera, Motor Control",
-  image:"https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=800&q=80",
-  video:"https://www.youtube.com/embed/videoseries",
-  materials:["ESP32-CAM","Arduino Uno","L293D","4 Motors","Chassis","Battery"],
-  steps:["Chassis + motors assemble karo.","ESP32-CAM front par mount karo.","Arduino motors control kare.","ESP32 WiFi hotspot banaye.","Phone browser mein IP kholo - live video!","Web page se motors control karo."],
-  physics:"WiFi 2.4GHz radio waves use karta hai.",
-  code:"// ESP32-CAM web server + motor control" }
+{id:1,name:"RC Car (Remote Control)",cat:"Vehicles",level:"Medium",time:"4-6 hours",cost:800,icon:"🚗",concept:"Wireless Communication, Motor Control",materials:["Arduino Uno","L293D Motor Driver","4 BO Motors","4 Wheels","Chassis","9V Battery","RF Transmitter","RF Receiver","Jumper Wires"],steps:["Chassis par 4 motors ko screw se fix karo.","Har motor mein wheel lagao.","L293D motor driver ko chassis par tape se chipka do.","Arduino ko motor driver ke upar mount karo.","Motor driver ke OUT1-OUT4 ko motors se jodo.","Arduino ke pins 9,10,11,13 ko driver ke IN1-IN4 se jodo.","RF receiver ke 4 output pins Arduino ke pins 2,3,4,5 se jodo.","Battery + terminal ko Arduino VIN aur driver 12V mein do.","Common ground sabka jodo.","Arduino mein RC car ka code upload karo.","Remote ke buttons press karke test karo."],physics:"Motor current se magnetic field banata hai (Fleming's Left Hand Rule). DC motor electrical energy ko mechanical energy mein convert karta hai. Newton's Third Law se car aage badhti hai.",code:"int motorA1=9,motorA2=10,motorB1=11,motorB2=13;\nint fwd=2,bwd=3,lft=4,rgt=5;\nvoid setup(){\n  pinMode(motorA1,OUTPUT);\n  pinMode(motorA2,OUTPUT);\n  pinMode(motorB1,OUTPUT);\n  pinMode(motorB2,OUTPUT);\n  pinMode(fwd,INPUT);\n  pinMode(bwd,INPUT);\n  pinMode(lft,INPUT);\n  pinMode(rgt,INPUT);\n}\nvoid loop(){\n  if(digitalRead(fwd)) forward();\n  if(digitalRead(bwd)) backward();\n  if(digitalRead(lft)) left();\n  if(digitalRead(rgt)) right();\n}"},
+{id:2,name:"Bluetooth Car (Mobile Control)",cat:"Vehicles",level:"Medium",time:"4 hours",cost:900,icon:"📱",concept:"Bluetooth Communication, Motor Control",materials:["Arduino Uno","HC-05 Bluetooth Module","L293D Motor Driver","4 Motors","Chassis","Battery","Jumper Wires","Android Phone"],steps:["Chassis par motors aur wheels fix karo.","L293D driver ko mount karo.","Arduino ko upar tape se chipka do.","HC-05 ke TX ko Arduino RX (pin 0) se jodo.","HC-05 ke RX ko Arduino TX (pin 1) se voltage divider ke through jodo.","HC-05 VCC ko 5V, GND ko GND se jodo.","Motors ko driver se jodo.","Driver input pins Arduino ke 9,10,11,13 se jodo.","Code upload karo.","Phone mein Bluetooth RC Controller app install karo.","HC-05 pair karo (password 1234 ya 0000).","App se arrow buttons press karke car chalao."],physics:"Bluetooth radio waves (2.4 GHz) use karta hai. Arduino signals ko motor commands mein convert karta hai. Electrical energy mechanical energy mein badalti hai.",code:"#include <SoftwareSerial.h>\nSoftwareSerial BT(0,1);\nvoid setup(){ BT.begin(9600);\n  pinMode(9,OUTPUT);\n  pinMode(10,OUTPUT);\n  pinMode(11,OUTPUT);\n  pinMode(13,OUTPUT);\n}\nvoid loop(){\n  if(BT.available()){\n    char c = BT.read();\n    if(c=='F') forward();\n    if(c=='B') backward();\n    if(c=='L') left();\n    if(c=='R') right();\n    if(c=='S') stopCar();\n  }\n}"},
+{id:3,name:"Line Follower Car",cat:"Vehicles",level:"Medium",time:"3 hours",cost:700,icon:"🛤️",concept:"IR Reflection, Sensors, Automation",materials:["Arduino Uno","2 IR Sensors","L293D Driver","2-4 Motors","Wheels","Chassis","Battery","Black Tape"],steps:["White chart paper par black tape se track banao.","Chassis par motors aur wheels lagao.","2 IR sensors ko aage niche mount karo.","IR sensors ke OUT pins Arduino ke A0, A1 se jodo.","L293D motors se jodo.","IR sensor VCC ko 5V, GND ko GND.","Arduino code upload karo.","Car ko track par rakho, khud chalegi.","Left sensor black detect kare to right turn.","Right sensor black detect kare to left turn."],physics:"IR LED light bhejta hai. White surface reflect karti hai, black absorb karti hai. Ye difference sensor detect karta hai.",code:"int L=A0,R=A1;\nvoid loop(){\n  int l=digitalRead(L);\n  int r=digitalRead(R);\n  if(l==0 && r==0) forward();\n  else if(l==1) right();\n  else if(r==1) left();\n  else stopCar();\n}"},
+{id:4,name:"Obstacle Avoiding Car",cat:"Vehicles",level:"Hard",time:"5 hours",cost:1100,icon:"🚙",concept:"Ultrasonic Sound Waves, Automation",materials:["Arduino Uno","HC-SR04 Ultrasonic Sensor","L293D Driver","Servo Motor","4 Motors","Chassis","Battery"],steps:["Chassis assemble karo motors aur wheels ke saath.","Ultrasonic sensor ko servo motor par mount karo.","Servo ko chassis ke aage screw karo.","HC-SR04 Trig ko Arduino pin 12, Echo ko pin 11.","Servo signal ko Arduino pin 10.","L293D motor driver jodo.","Code upload karo.","Car aage chalegi. Rukawat milegi to ruk kar scan karegi.","Khali raasta milne par aage badhegi."],physics:"Ultrasonic sensor 40kHz sound waves bhejta hai. Object se reflect hokar wapas aati hain. Time x Speed of Sound / 2 = Distance.",code:"#include <Servo.h>\nServo s;\nint trig=12, echo=11;\nlong distance(){\n  digitalWrite(trig,LOW); delayMicroseconds(2);\n  digitalWrite(trig,HIGH); delayMicroseconds(10);\n  digitalWrite(trig,LOW);\n  long t=pulseIn(echo,HIGH);\n  return t*0.034/2;\n}"},
+{id:5,name:"Voice Control Car",cat:"Vehicles",level:"Hard",time:"6 hours",cost:1500,icon:"🎤",concept:"Voice Recognition, Bluetooth, Motor Control",materials:["Arduino Uno","HC-05 Bluetooth","Android Phone","L293D","Motors","Chassis","Battery"],steps:["Sab hardware assemble karo.","Phone mein Arduino Voice Control app install karo.","App ko HC-05 se connect karo.","App mein commands set karo.","App voice ko text mein convert karke Bluetooth se bhejega.","Arduino commands receive karke motors chalayega.","Bolo forward, car chalegi."],physics:"Voice se sound waves banti hain, phone mic se digital signal banta hai, Bluetooth se Arduino tak pahunchta hai, motor current ban jata hai.",code:"// Same as Bluetooth Car - commands F/B/L/R"},
+{id:6,name:"Gesture Control Car",cat:"Vehicles",level:"Hard",time:"5 hours",cost:1400,icon:"👋",concept:"Accelerometer, Wireless, Motion Detection",materials:["2 Arduino","MPU6050 Accelerometer","nRF24L01 Wireless Module","L293D","Motors","Chassis"],steps:["Car mein Arduino aur motors aur receiver module lagao.","Glove par Arduino aur MPU6050 aur transmitter lagao.","Dono Arduino mein matching code upload karo.","Haath tilt karo aage to car aage.","Haath tilt karo peeche to car peeche.","Haath rotate karo to car turn."],physics:"MPU6050 accelerometer tilt detect karta hai gravity direction se. nRF24L01 radio waves se data bhejta hai.",code:"// Glove: read MPU6050 angle, send via nRF24\n// Car: receive angle, control motors"},
+{id:7,name:"Wireless Robot Car (RF)",cat:"Vehicles",level:"Medium",time:"4 hours",cost:900,icon:"📡",concept:"RF Communication, Encoder/Decoder",materials:["Arduino Uno","433MHz RF Transmitter","433MHz RF Receiver","HT12E Encoder","HT12D Decoder","L293D","Motors","Remote Box"],steps:["Transmitter ke liye 4 push buttons aur HT12E aur RF Transmitter ek remote box mein banao.","Receiver ke liye RF Receiver aur HT12D aur Arduino car mein lagao.","Buttons press karne par coded signal transmit hoga.","Car mein receiver decode karke motors chalayega.","4 buttons se 4 directions control karo."],physics:"RF module 433 MHz radio waves bhejta hai. HT12E aur HT12D data encode aur decode karte hain.",code:"// Receiver: HT12D outputs to Arduino pins to motors"},
+{id:8,name:"Solar Car",cat:"Vehicles",level:"Easy",time:"3 hours",cost:600,icon:"☀️",concept:"Photovoltaic Effect, Solar Energy",materials:["Solar Panel 6V","DC Motor","Wheels","Chassis","Wires"],steps:["Chassis par motor aur wheels lagao.","Solar panel ko upar mount karo.","Panel ke positive wire motor ke positive se, negative to negative.","Dhoop mein rakho, car chalegi.","Chhaya karne par ruk jayegi."],physics:"Solar panel photons ko absorb karke electrons release karta hai photovoltaic effect se. Ye DC current motor ko chalata hai.",code:"// No code needed - direct connection"},
+{id:9,name:"Fire Fighting Robot",cat:"Vehicles",level:"Hard",time:"8 hours",cost:2000,icon:"🔥",concept:"Flame Sensor, Water Pump, Automation",materials:["Arduino Uno","3 Flame Sensors","L293D","Water Pump","Relay Module","Motors","Chassis","Battery","Small Water Tank"],steps:["Chassis par motors aur wheels lagao.","3 flame sensors left, center, right mount karo.","Water pump aur relay ko tank ke saath lagao.","Sensors ko Arduino ke A0,A1,A2 se jodo.","Relay ko Arduino pin 8 se jodo.","Code upload karo.","Aag detect hone par robot us direction mein jayega.","Paas pahunch kar pump ON karke pani spray karega."],physics:"Flame sensor IR radiation detect karta hai kyunki aag se infrared nikalta hai. Robot us direction mein move karta hai.",code:"// Fire Fighting\n// Read 3 flame sensors, move toward fire"},
+{id:10,name:"Pick and Place Robot",cat:"Vehicles",level:"Hard",time:"8 hours",cost:2500,icon:"🦾",concept:"Servo Motors, Robotic Arm, Control",materials:["Arduino Uno","4 Servo Motors","Robotic Arm Kit","Bluetooth HC-05","Battery","Smartphone"],steps:["Robotic arm kit assemble karo.","Har joint par servo motor lagao.","Servo signal wires Arduino pins 3,5,6,9 se jodo.","Servo power external 5V 2A se do.","Bluetooth HC-05 jodo.","Phone app se har servo ka angle control karo.","Object utha kar dusri jagah rakho."],physics:"Servo motor PWM signal se specific angle par rukta hai. Gear train torque badhata hai.",code:"#include <Servo.h>\nServo s1,s2,s3,s4;\nvoid loop(){\n  // Read BT commands, set servo angles\n}"},
+{id:11,name:"Solar Tracker",cat:"Vehicles",level:"Medium",time:"3 hours",cost:600,icon:"🌞",concept:"LDR, Servo Motor, Solar Energy",materials:["Arduino Uno","2 LDR","Servo Motor","Solar Panel","Battery"],steps:["2 LDR ko alag angle par mount karo.","Servo par solar panel lagao.","Dono LDR Arduino A0, A1 se jodo.","Code upload karo.","Dono LDR ki reading compare karega.","Jis side zyada light, servo us direction mein panel ghumayega."],physics:"LDR resistance light se badalti hai. Servo difference ke hisaab se rotate hota hai, isliye panel hamesha sun ki taraf rehta hai.",code:"if(analogRead(A0) > analogRead(A1)) servo.write(servo.read()+1);\nelse servo.write(servo.read()-1);"},
+{id:12,name:"Bluetooth Tank",cat:"Vehicles",level:"Hard",time:"5 hours",cost:1200,icon:"🛡️",concept:"Bluetooth Communication, Track Drive",materials:["Arduino Uno","HC-05","L293D","2 DC Motors","Tank Chassis","Battery"],steps:["Tank chassis par track lagao.","Motors ko driver se jodo.","HC-05 connect karo.","Phone app se control karo."],physics:"Bluetooth radio waves se signals aate hain, Arduino motors ko control karta hai.",code:"if(BT.read()=='F') forward();\nif(BT.read()=='L') turnLeft();"},
+{id:13,name:"Sound Control Car",cat:"Vehicles",level:"Medium",time:"4 hours",cost:700,icon:"🔊",concept:"Sound Sensor, Motor Control",materials:["Arduino Uno","Sound Sensor","L293D","Motors","Chassis"],steps:["Sound sensor ko Arduino A0 se jodo.","Clap karo to car chalegi.","Dusra clap to ruk jayegi."],physics:"Sound sensor vibration ko electrical signal mein convert karta hai.",code:"if(analogRead(A0)>500) toggleCar();"},
+{id:14,name:"Electromagnetic Car",cat:"Vehicles",level:"Hard",time:"6 hours",cost:1000,icon:"⚡",concept:"Electromagnetic Induction, Wireless Power",materials:["Copper Coil","Magnet","LED","Motors"],steps:["Coil banao.","Magnet ke saath relative motion do.","Current generate hoga.","LED jalega."],physics:"Faraday Law: Magnetic field change se current induce hota hai.",code:"// No code - hardware only"},
+{id:15,name:"Air Pressure Car",cat:"Vehicles",level:"Easy",time:"2 hours",cost:300,icon:"🚀",concept:"Newton Third Law, Air Pressure",materials:["Bottle","Balloon","Straw","Wheels"],steps:["Bottle mein balloon lagao.","Balloon phulao.","Chhodo to car aage bhagegi."],physics:"Air peeche nikalti hai, car aage badhti hai action-reaction se.",code:"// No code"},
+{id:16,name:"Rubber Band Car",cat:"Vehicles",level:"Easy",time:"1.5 hours",cost:200,icon:"🎯",concept:"Elastic Potential Energy",materials:["Rubber Band","CD","Pencil","Tape"],steps:["CD par pencil lagao.","Rubber band wind karo.","Chhodo to car chalegi."],physics:"Rubber band ki elastic potential energy kinetic energy mein convert hoti hai.",code:"// No code"},
+{id:17,name:"Magnetic Levitation Car",cat:"Vehicles",level:"Hard",time:"6 hours",cost:1500,icon:"🧲",concept:"Magnetic Repulsion, Levitation",materials:["Magnets","Foam Track","Small Car"],steps:["Track par magnets lagao.","Car par opposite poles lagao.","Repulsion se car float karegi."],physics:"Same poles repel karte hain. Magnetic force gravity ko balance karta hai.",code:"// No code"},
+{id:18,name:"RF Remote Car",cat:"Vehicles",level:"Medium",time:"4 hours",cost:900,icon:"📻",concept:"RF Communication",materials:["Arduino","433MHz RF","HT12E","HT12D","L293D","Motors"],steps:["Remote banao transmitter se.","Car mein receiver lagao.","Buttons se control karo."],physics:"RF waves wireless control deti hain.",code:"// RF decode"},
+{id:19,name:"Self Driving Car Model",cat:"Vehicles",level:"Hard",time:"10 hours",cost:3000,icon:"🚘",concept:"AI, Sensors, Navigation",materials:["Arduino","Ultrasonic","IR Array","Motors","Camera"],steps:["Multiple sensors lagao.","Lane detection code.","Auto navigation."],physics:"Sensor fusion se autonomous driving hoti hai.",code:"// Multi-sensor navigation"},
+{id:20,name:"Hovercraft Model",cat:"Vehicles",level:"Hard",time:"6 hours",cost:1200,icon:"🛸",concept:"Air Cushion, Pressure",materials:["Arduino","DC Fan","Motors","Skirt Material"],steps:["Fan se air cushion banao.","Skirt lagao.","Motor se move karo."],physics:"Air cushion friction kam karta hai.",code:"// Hovercraft control"},
+{id:21,name:"Drone Model Mini",cat:"Vehicles",level:"Hard",time:"10 hours",cost:3500,icon:"🚁",concept:"Lift, Thrust, Gyroscope",materials:["Arduino","4 Motors","Propellers","MPU6050","Frame"],steps:["Frame assemble karo.","Motors aur props lagao.","MPU6050 se stabilize karo."],physics:"4 propellers lift banate hain.",code:"// PID stabilization"},
+{id:22,name:"PID Line Follower",cat:"Vehicles",level:"Hard",time:"6 hours",cost:1000,icon:"🎯",concept:"PID Control, IR Array",materials:["Arduino","5 IR Sensors","L293D","Motors"],steps:["5 IR sensors array lagao.","PID algorithm code karo.","Smooth tracking."],physics:"PID se smooth control hota hai.",code:"error = position - center;\ncorrection = Kp*error + Kd*(error-lastError);"},
+{id:23,name:"Mars Rover Model",cat:"Vehicles",level:"Hard",time:"12 hours",cost:4000,icon:"🛰️",concept:"6-Wheel Drive, Robotics",materials:["Arduino","6 Motors","Rockers","Sensors","Camera"],steps:["6-wheel chassis banao.","Rockers lagao.","Sensors aur camera lagao."],physics:"Rockers se rough terrain navigation hoti hai.",code:"// Rover control"},
+{id:24,name:"Obstacle Car with Servo",cat:"Vehicles",level:"Hard",time:"5 hours",cost:1100,icon:"🚗",concept:"Ultrasonic plus Servo Scan",materials:["Arduino","HC-SR04","Servo","L293D","Motors"],steps:["Sensor ko servo par mount karo.","Servo 180 degree scan kare.","Khali raasta dhundho."],physics:"Servo se 180 degree scan, ultrasonic se distance.",code:"servo.write(0); d1=distance(); servo.write(180); d2=distance();"},
+{id:25,name:"Voice Car v2",cat:"Vehicles",level:"Hard",time:"6 hours",cost:1500,icon:"🗣️",concept:"Voice Recognition",materials:["Arduino","HC-05","Android App","L293D","Motors"],steps:["App install karo.","Commands set karo.","Bolo to car chale."],physics:"Voice se digital signal banta hai, Bluetooth se Arduino tak.",code:"// Same as Bluetooth car"},
+{id:26,name:"Solar Car v2",cat:"Vehicles",level:"Easy",time:"3 hours",cost:600,icon:"🌅",concept:"Photovoltaic Effect",materials:["Panel","Motor","Wheels","Chassis"],steps:["Panel ko chassis par lagao.","Motor se jodo.","Dhoop mein rakho."],physics:"Solar panel photons ko electricity banata hai.",code:"// No code"},
+{id:27,name:"Fire Truck Robot",cat:"Vehicles",level:"Hard",time:"8 hours",cost:2000,icon:"🚒",concept:"Flame Sensor, Water Pump",materials:["Arduino","Flame Sensors","Pump","Relay","Motors"],steps:["Sensors front par lagao.","Pump aur tank lagao.","Aag detect to pump ON."],physics:"Flame IR radiation detect karta hai.",code:"if(flameDetected) pumpOn();"},
+{id:28,name:"Gesture Robot Hand Car",cat:"Vehicles",level:"Hard",time:"7 hours",cost:1800,icon:"✋",concept:"Flex Sensor, Servo",materials:["Arduino","Flex Sensors","Servo","Motors"],steps:["Glove par flex sensors lagao.","Car copy kare."],physics:"Flex sensor bend hone par resistance change karta hai.",code:"if(flexValue>threshold) servo.write(angle);"},
+{id:29,name:"Wireless Camera Car",cat:"Vehicles",level:"Hard",time:"10 hours",cost:3000,icon:"📹",concept:"WiFi, Camera, Motor Control",materials:["ESP32-CAM","Arduino","L293D","4 Motors"],steps:["ESP32 camera lagao.","Arduino motors control kare.","WiFi stream karo."],physics:"WiFi 2.4GHz radio waves, camera image sensor.",code:"// ESP32-CAM web server"},
+{id:30,name:"Line Follower v2 Advanced",cat:"Vehicles",level:"Medium",time:"3 hours",cost:500,icon:"🛣️",concept:"IR Reflection",materials:["Arduino","2 IR","L293D","Motors"],steps:["Track banao.","IR sensors lagao.","Code upload."],physics:"IR reflection se line detect hoti hai.",code:"if(!L && !R) forward();"},
+{id:31,name:"Fire Alarm",cat:"Alarms",level:"Easy",time:"2 hours",cost:300,icon:"🔥",concept:"Flame Detection, Alarm Circuit",materials:["Arduino Uno","Flame Sensor","Buzzer","LED","Resistor","Battery"],steps:["Flame sensor ke VCC ko 5V, GND ko GND, OUT ko Arduino A0.","Buzzer positive ko Arduino pin 8, negative ko GND.","LED positive ko pin 9 via 220 ohm resistor.","Code upload karo.","Matchstick jalao aur sensor ke paas lao.","Buzzer bajega aur LED jalega."],physics:"Flame sensor IR radiation detect karta hai jo aag se nikalta hai. Arduino signal ko buzzer command mein convert karta hai.",code:"void setup(){ pinMode(8,OUTPUT); pinMode(9,OUTPUT); }\nvoid loop(){\n  int f=analogRead(A0);\n  if(f>500){ digitalWrite(8,HIGH); digitalWrite(9,HIGH); }\n  else { digitalWrite(8,LOW); digitalWrite(9,LOW); }\n}"},
+{id:32,name:"Gas Leak Alarm",cat:"Alarms",level:"Medium",time:"3 hours",cost:500,icon:"💨",concept:"Gas Sensor, Safety System",materials:["Arduino Uno","MQ-2 Gas Sensor","Buzzer","LED","Battery"],steps:["MQ-2 ke VCC ko 5V, GND ko GND, A0 ko Arduino A0.","Buzzer pin 8 se, LED pin 9 se.","Code upload karo.","Lighter gas chhodo sensor ke paas.","Buzzer bajega gas leak detected."],physics:"MQ-2 sensor gas molecules ko absorb karke resistance change karta hai.",code:"if(analogRead(A0) > 400) alarmON();"},
+{id:33,name:"Water Level Indicator",cat:"Alarms",level:"Easy",time:"2 hours",cost:250,icon:"💧",concept:"Conductivity, Water Detection",materials:["Arduino Uno","Wires probes","LEDs","Buzzer","Battery","Container"],steps:["Container mein different levels par wires fix karo.","Har wire Arduino ke different pin se jodo.","LEDs bhi Arduino se jodo.","Pani bharao to level badhne par LEDs jalengi.","Top level par buzzer bajega."],physics:"Pani conductor hai. Level badhne par circuit complete hota hai.",code:"if(digitalRead(2)) digitalWrite(9,HIGH);\nif(digitalRead(3)) digitalWrite(10,HIGH);"},
+{id:34,name:"Burglar Alarm",cat:"Alarms",level:"Easy",time:"2 hours",cost:300,icon:"🚨",concept:"LDR, Light Detection",materials:["Arduino Uno","LDR","10k Resistor","Buzzer","LED","Battery"],steps:["LDR aur 10k resistor se voltage divider banao.","Middle point Arduino A0 se jodo.","Buzzer pin 8 se, LED pin 9 se.","Code upload karo.","Torch se LDR par light daalo.","Light hatao to alarm bajega."],physics:"LDR ki resistance light par depend karti hai.",code:"if(analogRead(A0) < 300) alarmON();"},
+{id:35,name:"Laser Security Alarm",cat:"Alarms",level:"Medium",time:"3 hours",cost:400,icon:"🔦",concept:"Laser Light, LDR, Security",materials:["Laser Diode","LDR","Arduino Uno","Buzzer","Resistors","Battery"],steps:["Laser ko ek wall par fix karo.","LDR ko opposite wall par lagao.","Laser LDR par focus karo.","LDR aur resistor voltage divider banao.","Arduino se buzzer connect karo.","Laser beam ke beech aane par alarm bajta hai."],physics:"Laser monochromatic light hai. LDR resistance light se badalti hai.",code:"if(analogRead(A0) < 400) digitalWrite(8,HIGH);"},
+{id:36,name:"Motion Detector Alarm",cat:"Alarms",level:"Medium",time:"3 hours",cost:450,icon:"👁️",concept:"PIR Sensor, Infrared Detection",materials:["Arduino Uno","PIR Sensor","Buzzer","LED","Battery"],steps:["PIR VCC ko 5V, GND ko GND, OUT ko Arduino pin 2.","Buzzer pin 8, LED pin 9.","Code upload karo.","Sensor ke saamne haath hilao to alarm bajega.","5 second baad auto off."],physics:"PIR sensor infrared radiation detect karta hai. Insaan ke body se IR nikalta hai.",code:"if(digitalRead(2)==HIGH) { tone(8, 1000); }"},
+{id:37,name:"Darkness Detector Light",cat:"Alarms",level:"Easy",time:"2 hours",cost:250,icon:"🌙",concept:"LDR, Automatic Lighting",materials:["Arduino Uno","LDR","10k Resistor","LED or Relay","Battery"],steps:["LDR aur 10k voltage divider banao.","A0 se connect karo.","LED Arduino pin 9 se.","Code upload karo.","Raat ko light khud jalegi, din mein band."],physics:"LDR resistance light par depend karti hai.",code:"if(analogRead(A0) < 300) digitalWrite(9,HIGH);"},
+{id:38,name:"Rain Alarm",cat:"Alarms",level:"Easy",time:"2 hours",cost:250,icon:"🌧️",concept:"Water Conductivity",materials:["Arduino Uno","2 Metal Plates","Buzzer","Battery","Wires"],steps:["2 metal plates ko thoda gap par fix karo.","Dono plates ko Arduino se jodo.","Buzzer pin 8 se.","Code upload karo.","Pani spray karo plates par to buzzer bajega."],physics:"Pani conductor hai. Pani girne se circuit complete hota hai.",code:"if(analogRead(A0) > 500) digitalWrite(8,HIGH);"},
+{id:39,name:"Temperature Alarm",cat:"Alarms",level:"Easy",time:"2 hours",cost:300,icon:"🌡️",concept:"Thermistor, Temperature Sensing",materials:["Arduino Uno","LM35 Sensor","Buzzer","LED","Battery"],steps:["LM35 ke pin 1 ko 5V, pin 2 ko A0, pin 3 ko GND.","Buzzer pin 8, LED pin 9.","Code mein threshold 40 degree C set karo.","Heater ke paas rakho.","Threshold cross hone par alarm."],physics:"LM35 har 1 degree C par 10mV output deta hai.",code:"float t = analogRead(A0) * 0.488;\nif(t > 40) digitalWrite(8,HIGH);"},
+{id:40,name:"Wireless Doorbell",cat:"Alarms",level:"Medium",time:"3 hours",cost:400,icon:"🔔",concept:"RF Communication, Buzzer",materials:["2 Arduino","433MHz RF Tx Rx","Push Button","Buzzer","Battery"],steps:["Door unit mein Push button aur Arduino aur RF Transmitter lagao.","Andar unit mein RF Receiver aur Arduino aur Buzzer lagao.","Dono mein code upload karo.","Button press karo to andar buzzer bajega."],physics:"RF transmitter 433 MHz radio waves bhejta hai.",code:"// Tx: if(button) send signal\n// Rx: if(received) tone(8, 1000);"},
+{id:41,name:"Earthquake Alarm",cat:"Alarms",level:"Medium",time:"3 hours",cost:400,icon:"🌍",concept:"Vibration Sensor",materials:["Arduino Uno","SW-420 Vibration Sensor","Buzzer","LED"],steps:["Vibration sensor ko Arduino pin 2 se jodo.","Buzzer pin 8 se.","Code upload karo.","Table hilao to alarm bajega."],physics:"Vibration sensor motion detect karta hai, electrical signal generate hota hai.",code:"if(digitalRead(2)) tone(8,1000);"},
+{id:42,name:"Water Quality Alarm",cat:"Alarms",level:"Medium",time:"3 hours",cost:500,icon:"💧",concept:"Conductivity, Water Quality",materials:["Arduino Uno","2 Metal Probes","Buzzer","LCD"],steps:["2 probes pani mein daalo.","Resistance measure karo.","Ganda pani to alarm bajega."],physics:"Pani ki conductivity se purity detect hoti hai.",code:"if(analogRead(A0)>threshold) alarmON();"},
+{id:43,name:"CO Gas Alarm",cat:"Alarms",level:"Medium",time:"3 hours",cost:600,icon:"⚠️",concept:"Gas Sensor, Safety",materials:["Arduino Uno","MQ-7 CO Sensor","Buzzer"],steps:["MQ-7 connect karo.","Threshold set karo.","CO detect hone par alarm."],physics:"CO gas sensor resistance change karta hai gas ke contact se.",code:"if(analogRead(A0)>400) alarmON();"},
+{id:44,name:"Ultrasonic Security",cat:"Alarms",level:"Medium",time:"3 hours",cost:450,icon:"🛡️",concept:"Distance Detection, Security",materials:["Arduino Uno","HC-SR04","Buzzer"],steps:["Ultrasonic sensor door par lagao.","Distance measure karo.","Koi paas aaye to alarm."],physics:"Ultrasonic waves se distance measurement hoti hai.",code:"if(distance()<50) alarmON();"},
+{id:45,name:"Fire plus Smoke Combo",cat:"Alarms",level:"Hard",time:"4 hours",cost:700,icon:"🔥",concept:"Multi-Sensor Fusion",materials:["Arduino Uno","MQ-2","LM35","Buzzer"],steps:["MQ-2 aur LM35 connect karo.","Donon se input lo.","Koi bhi threshold cross kare to alarm."],physics:"Multiple sensors se accurate detection hoti hai.",code:"if(analogRead(A0)>400 || temp>50) alarmON();"},
+{id:46,name:"Reed Door Alarm",cat:"Alarms",level:"Easy",time:"2 hours",cost:250,icon:"🚪",concept:"Reed Switch, Magnetic",materials:["Arduino Uno","Reed Switch","Magnet","Buzzer"],steps:["Door par reed switch lagao.","Door frame par magnet.","Door khule to circuit complete aur alarm."],physics:"Magnet paas aane par reed switch close ya open hota hai.",code:"if(digitalRead(2)==HIGH) alarmON();"},
+{id:47,name:"Vibration Alarm",cat:"Alarms",level:"Easy",time:"2 hours",cost:250,icon:"📳",concept:"Piezo Vibration Detection",materials:["Arduino Uno","Piezo Element","Buzzer"],steps:["Piezo ko Arduino A0 se jodo.","Surface par lagao.","Vibration detect to alarm."],physics:"Piezo vibration ko voltage mein convert karta hai.",code:"if(analogRead(A0)>100) alarmON();"},
+{id:48,name:"Water Overflow Alarm",cat:"Alarms",level:"Easy",time:"2 hours",cost:250,icon:"🌊",concept:"Liquid Level Detection",materials:["Arduino Uno","Probe Wires","Buzzer"],steps:["Top level par wire lagao.","Pani chhue to circuit complete.","Buzzer bajega."],physics:"Pani conductor hai, level detect hota hai.",code:"if(digitalRead(2)) tone(8,1000);"},
+{id:49,name:"Night Light Alarm",cat:"Alarms",level:"Easy",time:"2 hours",cost:200,icon:"🌙",concept:"LDR, Light Detection",materials:["Arduino Uno","LDR","LED","Buzzer"],steps:["LDR ko Arduino A0 se jodo.","Dark detect to LED jale.","Agar raat mein light aaye to alarm."],physics:"LDR resistance light se badalti hai.",code:"if(analogRead(A0)<200) { digitalWrite(9,HIGH); }"},
+{id:50,name:"PIR Motion Light",cat:"Alarms",level:"Medium",time:"3 hours",cost:400,icon:"🚶",concept:"PIR Sensor, Automation",materials:["Arduino Uno","PIR Sensor","Relay","Bulb"],steps:["PIR ko Arduino pin 2 se.","Relay pin 8 se.","Koi aaye to light ON."],physics:"PIR infrared radiation detect karta hai.",code:"if(digitalRead(2)) digitalWrite(8,HIGH);"},
+{id:51,name:"Air Quality Alarm",cat:"Alarms",level:"Hard",time:"5 hours",cost:1500,icon:"🌫️",concept:"PM2.5 Sensor",materials:["Arduino Uno","PM2.5 Sensor","LCD","Buzzer"],steps:["PM2.5 sensor connect karo.","Air quality measure karo.","Threshold cross to alarm."],physics:"Laser scattering se particles count hote hain.",code:"// PM2.5 sensor data read"},
+{id:52,name:"Flame Detection",cat:"Alarms",level:"Easy",time:"2 hours",cost:300,icon:"🔥",concept:"IR Flame Detection",materials:["Arduino Uno","Flame Sensor","Buzzer"],steps:["Flame sensor ko Arduino A0 se.","Matchstick jalao.","Buzzer bajega."],physics:"Flame IR radiation detect karta hai.",code:"if(analogRead(A0)>500) alarmON();"},
+{id:53,name:"Door Sensor Alarm",cat:"Alarms",level:"Easy",time:"2 hours",cost:250,icon:"🔔",concept:"Magnetic Switch",materials:["Arduino Uno","Reed Switch","Buzzer"],steps:["Reed switch door par lagao.","Door khule to alarm."],physics:"Magnet ki presence se switch control hota hai.",code:"if(digitalRead(2)==LOW) alarmON();"},
+{id:54,name:"Current Leak Alarm",cat:"Alarms",level:"Hard",time:"5 hours",cost:800,icon:"⚡",concept:"Current Detection",materials:["Arduino Uno","CT Sensor","Buzzer"],steps:["CT sensor wire ke around lagao.","Current detect karo.","Leak detect to alarm."],physics:"Current flowing wire se magnetic field banta hai.",code:"if(currentReading>threshold) alarmON();"},
+{id:55,name:"Soil Moisture Alarm",cat:"Alarms",level:"Easy",time:"2 hours",cost:300,icon:"🌱",concept:"Resistive Moisture Detection",materials:["Arduino Uno","Soil Moisture Sensor","Buzzer"],steps:["Sensor mitti mein daalo.","Dry detect to alarm bajao.","Pani daalo to band."],physics:"Mitti ki conductivity moisture se badalti hai.",code:"if(analogRead(A0)>threshold) alarmON();"},
+{id:56,name:"UV Index Alarm",cat:"Alarms",level:"Medium",time:"3 hours",cost:500,icon:"☀️",concept:"UV Sensor",materials:["Arduino Uno","UV Sensor","Buzzer","LED"],steps:["UV sensor connect karo.","Dhoop mein rakho.","High UV to alarm."],physics:"UV sensor ultraviolet light detect karta hai.",code:"if(analogRead(A0)>threshold) alarmON();"},
+{id:57,name:"Heart Rate Alarm",cat:"Alarms",level:"Hard",time:"5 hours",cost:800,icon:"❤️",concept:"Pulse Sensor",materials:["Arduino Uno","Pulse Sensor","LCD","Buzzer"],steps:["Pulse sensor finger par lagao.","Heart rate measure karo.","Abnormal to alarm."],physics:"Blood flow se light absorption change hoti hai.",code:"if(bpm>100 || bpm<60) alarmON();"},
+{id:58,name:"Fall Detection Alarm",cat:"Alarms",level:"Hard",time:"5 hours",cost:1000,icon:"🆘",concept:"Accelerometer",materials:["Arduino Uno","MPU6050","Buzzer","GSM Module"],steps:["MPU6050 body par lagao.","Sudden fall detect karo.","Alarm aur SMS bhejo."],physics:"Accelerometer sudden change detect karta hai.",code:"// MPU6050 se fall detection"},
+{id:59,name:"Gate Status Alarm",cat:"Alarms",level:"Easy",time:"2 hours",cost:250,icon:"🚗",concept:"Reed Switch",materials:["Arduino Uno","Reed Switch","LED"],steps:["Reed switch gate par lagao.","Gate khula to LED jale."],physics:"Magnetic switch position detect karta hai.",code:"if(digitalRead(2)) digitalWrite(9,HIGH);"},
+{id:60,name:"Earthquake Early Warning",cat:"Alarms",level:"Hard",time:"6 hours",cost:1200,icon:"🌋",concept:"Accelerometer, Vibration",materials:["Arduino Uno","ADXL345","Buzzer","LCD"],steps:["ADXL345 connect karo.","Vibration pattern analyze karo.","Earthquake detect to alarm."],physics:"Accelerometer ground vibration detect karta hai.",code:"// ADXL345 se vibration detection"},
+{id:61,name:"Walking Robot",cat:"Robots",level:"Hard",time:"6 hours",cost:1200,icon:"🚶",concept:"Servo Motors, Biped Walking",materials:["Arduino Uno","4-6 Servo Motors","Robot Frame Kit","Battery","Jumper Wires"],steps:["Robot frame assemble karo.","Har joint par servo lagao.","Servo signal wires Arduino pins 3,5,6,9,10,11 se jodo.","Servo power external 5V 3A se do.","Code upload karo walking sequence.","Robot khud chalega."],physics:"Servo motor specific angle par rukta hai. Sequence of angles se walking motion banta hai.",code:"#include <Servo.h>\nServo L1,L2,R1,R2;\nvoid walk(){\n  L1.write(30); delay(200);\n  R1.write(30); delay(200);\n}"},
+{id:62,name:"Dancing Robot",cat:"Robots",level:"Medium",time:"4 hours",cost:800,icon:"💃",concept:"Servo Motors, Rhythmic Motion",materials:["Arduino Uno","4 Servo Motors","Robot Body","Buzzer","Battery"],steps:["Robot body par 4 servos lagao.","Servo Arduino pins 3,5,6,9 se jodo.","Buzzer pin 8 se.","Music aur dance code upload karo.","Robot music ke saath dance karega."],physics:"Servo angles ke sequence se dance motion banta hai.",code:"void dance(){\n  for(int a=0;a<180;a+=10){ servo1.write(a); delay(50); }\n}"},
+{id:63,name:"Robot Arm",cat:"Robots",level:"Hard",time:"6 hours",cost:1800,icon:"🦾",concept:"Servo Motors, Torque, Control",materials:["Arduino Uno","4-5 Servo Motors","Robot Arm Kit","Bluetooth HC-05","Power Supply"],steps:["Arm kit assemble karo.","Har joint par strong servo lagao.","Servo signals Arduino pins se jodo.","Bluetooth HC-05 add karo.","Phone app se control karo.","Object pick karo aur place karo."],physics:"Servo motor torque force x distance hota hai. Gear train torque badhata hai.",code:"#include <Servo.h>\nServo base, shoulder, elbow, grip;"},
+{id:64,name:"Drawing Robot",cat:"Robots",level:"Hard",time:"6 hours",cost:1500,icon:"✏️",concept:"Polar Coordinates, Stepper Motors",materials:["Arduino Uno","2 Stepper Motors","Belt and Pulley","Pen Holder","Frame","Battery"],steps:["Frame banao XY plotter style.","2 stepper motors X aur Y axis par lagao.","Belt pulley system se pen holder move karo.","Stepper drivers Arduino se jodo.","Code mein shape coordinates do.","Robot drawing banayega."],physics:"Stepper motor exact steps mein ghumta hai. CNC principle se drawing banti hai.",code:"void drawLine(x1,y1,x2,y2){\n  // move stepper motors\n}"},
+{id:65,name:"Cleaning Robot",cat:"Robots",level:"Medium",time:"4 hours",cost:1000,icon:"🧹",concept:"Motors, Suction, Automation",materials:["Arduino Uno","2 DC Motors","Small Fan","Dust Container","L293D","Battery"],steps:["Chassis par wheels aur motors lagao.","Chhota fan chassis par lagao.","Fan ke neeche dust container fix karo.","Code upload random movement.","Robot chalega aur dust suck karega."],physics:"Fan air suction banata hai pressure difference se.",code:"void loop(){\n  forward(); delay(2000);\n  turnRandom(); delay(1000);\n}"},
+{id:66,name:"Spy Robot Camera",cat:"Robots",level:"Hard",time:"6 hours",cost:2500,icon:"🕵️",concept:"Wireless Video, Camera",materials:["Arduino Uno","ESP32-CAM","L293D","Motors","Chassis","Battery"],steps:["Chassis par motors aur wheels lagao.","ESP32-CAM ko front par mount karo.","ESP32 ko Arduino se serial connect karo.","Code upload WiFi hotspot banayega.","Phone se IP address kholo live video.","Motors bhi phone se control karo."],physics:"ESP32-CAM image capture karke WiFi se stream karta hai.",code:"// ESP32-CAM WiFi streaming"},
+{id:67,name:"Sumo Robot",cat:"Robots",level:"Hard",time:"8 hours",cost:2000,icon:"🤼",concept:"Force, Sensors, Strategy",materials:["Arduino Uno","4 High-Torque Motors","IR Sensors","Ultrasonic Sensor","Strong Chassis"],steps:["Strong chassis banao.","4 high-speed motors lagao.","Front par ultrasonic aur IR sensors lagao.","Code enemy detect karo push karo.","Arena mein do robots ladenge."],physics:"Force mass x acceleration hota hai. Zyada torque se push force zyada.",code:"if(enemyDetected) { fullSpeedForward(); }"},
+{id:68,name:"Soccer Robot",cat:"Robots",level:"Hard",time:"8 hours",cost:2200,icon:"⚽",concept:"Ball Tracking, Kicking",materials:["Arduino Uno","Motors","IR Ball Sensor","Kicking Servo","Chassis"],steps:["Chassis par motors lagao.","IR sensor se special ball track karo.","Ball detect hone par us direction jao.","Paas pahunch kar servo se kick maro.","Goal mein daalo."],physics:"IR sensor ball ke infrared signature detect karta hai.",code:"if(ballDetected) { moveTowardBall(); if(close) kick(); }"},
+{id:69,name:"Interactive Desk Robot",cat:"Robots",level:"Hard",time:"6 hours",cost:1500,icon:"🤖",concept:"Multi-Sensor, State Machine",materials:["Arduino Uno","LCD","Piezo","FSR","Photoresistor","Ultrasonic"],steps:["LCD aur sensors connect karo.","Expression display code upload karo.","Different inputs par different reactions."],physics:"Multiple sensors se environment sense hoti hai, state machine se behavior decide hoti hai.",code:"// LCD expressions + sensor inputs"},
+{id:70,name:"Escape Alarm Clock",cat:"Robots",level:"Hard",time:"6 hours",cost:1000,icon:"⏰",concept:"Moving Robot, Obstacle Avoidance",materials:["Arduino Nano","L298N","2 Motors","ADXL345","Buzzer"],steps:["Alarm clock banao.","Motors par wheels lagao.","Alarm bajte hi bhaag jayega."],physics:"Robot user se door bhaagta hai, accelerometer se obstacle detect karta hai.",code:"if(alarm) { forward(); if(accelChange) turn(); }"},
+{id:71,name:"Wall Follower Robot",cat:"Robots",level:"Medium",time:"4 hours",cost:800,icon:"🚧",concept:"Ultrasonic Wall Tracking",materials:["Arduino Uno","HC-SR04","L293D","Motors"],steps:["Sensor side par lagao.","Wall distance constant rakho.","Follow kare."],physics:"Ultrasonic distance maintain karta hai.",code:"if(distance()>20) turnRight(); else turnLeft();"},
+{id:72,name:"Line Robot v2",cat:"Robots",level:"Medium",time:"3 hours",cost:600,icon:"🛤️",concept:"IR Line Follow",materials:["Arduino Uno","2 IR Sensors","L293D","Motors"],steps:["IR sensors neeche mount karo.","Line follow karo."],physics:"IR reflection se line detect hoti hai.",code:"if(L==0 && R==0) forward();"},
+{id:73,name:"RC Robot v2",cat:"Robots",level:"Medium",time:"4 hours",cost:900,icon:"🎮",concept:"RF Control",materials:["Arduino Uno","433MHz RF","HT12E","HT12D","L293D"],steps:["Remote aur receiver banao.","Buttons se control karo."],physics:"RF waves wireless control deti hain.",code:"// RF decode"},
+{id:74,name:"Smart Dustbin",cat:"Robots",level:"Medium",time:"4 hours",cost:800,icon:"🗑️",concept:"IR Sensor, Servo, Automation",materials:["Arduino Nano","IR Sensor","Servo","Dustbin"],steps:["IR sensor dustbin par lagao.","Servo lid par lagao.","Haath paas to lid khule."],physics:"IR motion detect karta hai, servo lid control karta hai.",code:"if(motion) { servo.write(90); delay(1400); servo.write(0); }"},
+{id:75,name:"Underwater Robot",cat:"Robots",level:"Hard",time:"10 hours",cost:3000,icon:"🐟",concept:"Waterproof, Propellers",materials:["Arduino Uno","Waterproof Motors","Propellers","Waterproof Case"],steps:["Waterproof body banao.","Propellers lagao.","Remote control karo."],physics:"Propeller water push karta hai, robot aage badhta hai.",code:"// Underwater robot control"},
+{id:76,name:"Wall Climbing Robot",cat:"Robots",level:"Hard",time:"10 hours",cost:2500,icon:"🧗",concept:"Suction, Vacuum",materials:["Arduino Uno","Vacuum Motors","Motors","Chassis"],steps:["Vacuum system banao.","Wall par lagao.","Move karo."],physics:"Vacuum suction wall se chipkata hai.",code:"// Wall climbing control"},
+{id:77,name:"Waiter Robot",cat:"Robots",level:"Hard",time:"8 hours",cost:3000,icon:"🍽️",concept:"Line Follow, Obstacle Avoid",materials:["Arduino Uno","IR Sensors","Ultrasonic","Motors","Tray"],steps:["Line follow code.","Obstacle avoid.","Tray par khana rakho."],physics:"IR aur ultrasonic se navigation hoti hai.",code:"// Line following + obstacle avoidance"},
+{id:78,name:"Sanitizer Robot",cat:"Robots",level:"Medium",time:"5 hours",cost:1500,icon:"🧴",concept:"UV Light, Movement",materials:["Arduino Uno","UV Lamp","Motors","Relay"],steps:["UV lamp robot par lagao.","Room mein ghumao.","Timer se control."],physics:"UV light bacteria kill karti hai.",code:"if(timer) { motorOn(); uvOn(); }"},
+{id:79,name:"Smart Plant Robot",cat:"Robots",level:"Medium",time:"4 hours",cost:1000,icon:"🌱",concept:"Moisture Detection, Auto Water",materials:["Arduino Uno","Soil Sensor","Water Pump","Relay"],steps:["Soil sensor mitti mein.","Pump pani ke liye.","Dry to pump ON."],physics:"Soil conductivity se moisture detect hoti hai.",code:"if(soilDry) pumpOn();"},
+{id:80,name:"Patrol Robot",cat:"Robots",level:"Hard",time:"7 hours",cost:2000,icon:"👮",concept:"Line Follow, Camera",materials:["Arduino Uno","IR Sensors","Camera","Motors"],steps:["Path define karo.","Robot patrol kare.","Camera recording."],physics:"IR sensors se path follow hota hai.",code:"// Patrol path code"},
+{id:81,name:"Gesture Robotic Hand",cat:"Robots",level:"Hard",time:"8 hours",cost:2500,icon:"✋",concept:"Flex Sensor, Servo",materials:["Arduino Uno","Flex Sensors","Servo Motors","Glove"],steps:["Glove par flex sensors lagao.","Hand movements read karo.","Robot hand copy kare."],physics:"Flex sensor bend hone par resistance change karta hai.",code:"if(flexValue>threshold) servo.write(angle);"},
+{id:82,name:"Art Robot",cat:"Robots",level:"Hard",time:"7 hours",cost:1800,icon:"🎨",concept:"Stepper Motors, Coordinates",materials:["Arduino Uno","2 Stepper","Belt","Pen"],steps:["XY system banao.","Stepper motors lagao.","Coordinates se drawing."],physics:"Stepper motor exact position control karta hai.",code:"// XY drawing code"},
+{id:83,name:"Fire Fighting Robot v2",cat:"Robots",level:"Hard",time:"8 hours",cost:2200,icon:"🧯",concept:"Flame Sensor, Water Pump",materials:["Arduino Uno","Flame Sensors","Water Pump","Motors"],steps:["Sensors mount karo.","Pump aur tank lagao.","Aag detect to pump."],physics:"Flame IR radiation detect karta hai.",code:"if(flame) pumpOn();"},
+{id:84,name:"Weather Robot",cat:"Robots",level:"Hard",time:"6 hours",cost:1500,icon:"🌦️",concept:"Multi-Sensor Weather",materials:["Arduino Uno","DHT11","BMP280","LCD"],steps:["Sensors connect karo.","Data read karo.","LCD par display."],physics:"Multiple sensors se weather data milta hai.",code:"// Read weather sensors"},
+{id:85,name:"Garden Robot",cat:"Robots",level:"Hard",time:"8 hours",cost:2500,icon:"🌿",concept:"Navigation, Watering",materials:["Arduino Uno","Motors","Water Pump","Sensors"],steps:["Navigation code.","Watering system.","Auto care."],physics:"Auto garden care se plants healthy rehte hain.",code:"// Auto garden code"},
+{id:86,name:"Voice Robot",cat:"Robots",level:"Hard",time:"6 hours",cost:1800,icon:"🗣️",concept:"Voice Recognition, Motor",materials:["Arduino Uno","Voice Module","Motors"],steps:["Voice module connect karo.","Commands set karo.","Bolo to move kare."],physics:"Voice recognition se commands milte hain.",code:"// Voice command processing"},
+{id:87,name:"Obstacle Robot v2",cat:"Robots",level:"Medium",time:"4 hours",cost:800,icon:"🚙",concept:"Ultrasonic Avoidance",materials:["Arduino Uno","HC-SR04","L293D","Motors"],steps:["Sensor front par.","Obstacle detect.","Turn karo."],physics:"Ultrasonic echo se distance.",code:"if(dist<20) turn();"},
+{id:88,name:"Line Maze Solver",cat:"Robots",level:"Hard",time:"6 hours",cost:1200,icon:"🌀",concept:"IR Array, Maze Solving",materials:["Arduino Uno","5 IR Sensors","L293D","Motors"],steps:["5 IR array lagao.","Maze solving algorithm.","Exit dhundho."],physics:"IR array se complex patterns detect hote hain.",code:"// Maze solving algorithm"},
+{id:89,name:"RC Car v3",cat:"Robots",level:"Medium",time:"4 hours",cost:900,icon:"🚗",concept:"RF Control",materials:["Arduino Uno","RF Module","L293D"],steps:["Remote banao.","Car control karo."],physics:"RF wireless control.",code:"// RF car"},
+{id:90,name:"Robotic Fish",cat:"Robots",level:"Hard",time:"8 hours",cost:2000,icon:"🐠",concept:"Servo Swim, Waterproof",materials:["Arduino Uno","Servo Motor","Waterproof Body"],steps:["Waterproof body banao.","Servo tail lagao.","Swim code."],physics:"Servo tail motion se fish tairti hai.",code:"// Swim motion code"},
+{id:91,name:"Automatic Street Light",cat:"Gadgets",level:"Easy",time:"2 hours",cost:300,icon:"💡",concept:"LDR, Automatic Control",materials:["Arduino Uno","LDR","Relay Module","LED or Bulb","Resistor","Battery"],steps:["LDR aur 10k voltage divider A0 se jodo.","Relay Arduino pin 8 se jodo.","Bulb relay ke through jodo.","Code upload karo.","Din mein bulb OFF, raat mein khud ON."],physics:"LDR light sensitive hai. Dark mein resistance high to relay ON.",code:"if(analogRead(A0) < 300) digitalWrite(8,HIGH);"},
+{id:92,name:"Automatic Door",cat:"Gadgets",level:"Medium",time:"4 hours",cost:900,icon:"🚪",concept:"PIR Sensor, Servo Motor",materials:["Arduino Uno","PIR Sensor","Servo Motor","Door Frame","Battery"],steps:["PIR sensor door ke upar mount karo.","Servo ko door hinge par lagao.","PIR OUT to Arduino pin 2.","Servo signal to Arduino pin 9.","Koi paas aaya to door khulega."],physics:"PIR sensor body heat detect karta hai.",code:"if(digitalRead(2)) { door.write(90); delay(5000); door.write(0); }"},
+{id:93,name:"Smart Dustbin v2",cat:"Gadgets",level:"Medium",time:"4 hours",cost:1000,icon:"🗑️",concept:"Ultrasonic Sensor, Servo",materials:["Arduino Uno","HC-SR04","Servo Motor","Dustbin"],steps:["Ultrasonic sensor dustbin ke top par mount karo.","Servo ko lid par lagao.","HC-SR04 to Arduino pins 11, 12.","Servo to Arduino pin 9.","Haath paas lao to lid khulegi."],physics:"Ultrasonic sensor distance measure karta hai.",code:"if(distance()<20) lid.write(90); else lid.write(0);"},
+{id:94,name:"Automatic Fan",cat:"Gadgets",level:"Medium",time:"3 hours",cost:500,icon:"🌀",concept:"Temperature Sensor, Relay",materials:["Arduino Uno","LM35","Relay Module","DC Fan","Battery"],steps:["LM35 to Arduino A0.","Relay to Arduino pin 8.","Fan relay ke through power do.","Threshold 30 degree C set karo.","Garam hone par fan khud chalega."],physics:"LM35 temperature ko voltage mein convert karta hai.",code:"if(analogRead(A0)*0.488 > 30) digitalWrite(8,HIGH);"},
+{id:95,name:"Clap Switch Light",cat:"Gadgets",level:"Medium",time:"3 hours",cost:400,icon:"👏",concept:"Sound Sensor, Switch",materials:["Arduino Uno","Sound Sensor","Relay","Bulb","Battery"],steps:["Sound sensor OUT to Arduino pin 2.","Relay to Arduino pin 8.","Code upload clap detect kare.","Ek clap to light ON.","Dusra clap to light OFF."],physics:"Sound sensor microphone se vibrations detect karta hai.",code:"if(digitalRead(2)) { state=!state; digitalWrite(8,state); delay(500); }"},
+{id:96,name:"Touch Switch",cat:"Gadgets",level:"Easy",time:"2 hours",cost:250,icon:"👆",concept:"Capacitive Touch",materials:["Arduino Uno","Touch Sensor TTP223","LED or Relay","Battery"],steps:["Touch sensor VCC to 5V, GND to GND, OUT to Arduino pin 2.","LED pin 9 se.","Code upload karo.","Sensor touch karo to LED jalega."],physics:"Capacitive touch sensor body ki capacitance detect karta hai.",code:"if(digitalRead(2)) digitalWrite(9,HIGH);"},
+{id:97,name:"PIR Light",cat:"Gadgets",level:"Easy",time:"2 hours",cost:350,icon:"🚶",concept:"Motion Detection, Automation",materials:["Arduino Uno","PIR Sensor","LED Strip or Bulb","Relay","Battery"],steps:["PIR OUT to Arduino pin 2.","Relay to pin 8. Bulb relay se.","Code upload karo.","Koi aaya to light ON, 10 sec baad OFF."],physics:"PIR sensor infrared changes detect karta hai.",code:"if(digitalRead(2)) { digitalWrite(8,HIGH); delay(10000); digitalWrite(8,LOW); }"},
+{id:98,name:"Bluetooth Speaker",cat:"Gadgets",level:"Medium",time:"4 hours",cost:700,icon:"🔊",concept:"Bluetooth Audio, Amplifier",materials:["Bluetooth Audio Module","PAM8403 Amplifier","Speaker 4ohm 3W","Battery"],steps:["Bluetooth module output to Amplifier input.","Amplifier output to Speaker.","Battery se power do.","Phone se Bluetooth pair karo.","Music play karo."],physics:"Bluetooth digital audio receive karta hai. Speaker electromagnetic induction se sound banata hai.",code:"// Hardware only"},
+{id:99,name:"FM Radio",cat:"Gadgets",level:"Hard",time:"6 hours",cost:1000,icon:"📻",concept:"Radio Waves, Demodulation",materials:["Arduino Uno","TEA5767 FM Module","Amplifier","Speaker","Antenna"],steps:["TEA5767 module I2C se Arduino se jodo A4 SDA A5 SCL.","Audio output amplifier se jodo.","Speaker amplifier output se.","Antenna wire connect karo.","Code upload frequency set karo."],physics:"FM radio electromagnetic waves receive karta hai. Demodulation se audio signal nikalta hai.",code:"#include <Wire.h>\n// TEA5767 set frequency code"},
+{id:100,name:"Mini Fan",cat:"Gadgets",level:"Easy",time:"1 hour",cost:150,icon:"💨",concept:"DC Motor, Electrical Energy",materials:["DC Motor","Fan Blade","AA Battery","Switch","Wires"],steps:["Fan blade motor shaft par lagao.","Motor ke positive wire switch se, negative battery se.","Switch se battery se jodo.","Switch ON karo to fan chalega."],physics:"Motor current se magnetic field banata hai. Electrical energy rotational kinetic energy mein convert hoti hai.",code:"// No code - direct hardware"},
+{id:101,name:"Emergency Light",cat:"Gadgets",level:"Medium",time:"3 hours",cost:400,icon:"🔋",concept:"Battery Backup, Relay",materials:["Arduino Uno","Relay","LED Strip","Rechargeable Battery","Charging Circuit"],steps:["Battery ko charging circuit se jodo.","Relay se main power detect karo.","Main power jaate hi relay battery se LED chalu karega.","Code upload karo.","Light jaane par emergency light khud jalegi."],physics:"Relay automatic switch ka kaam karta hai.",code:"if(!mainPower()) digitalWrite(8,HIGH);"},
+{id:102,name:"Solar Mobile Charger",cat:"Gadgets",level:"Medium",time:"3 hours",cost:500,icon:"🔌",concept:"Solar Energy, Voltage Regulation",materials:["Solar Panel 6V 5W","LM7805 Regulator","USB Port","Diode","Capacitor"],steps:["Solar panel output ko diode se jodo.","LM7805 regulator se 5V stable karo.","Capacitor filter lagao.","USB female port connect karo.","Dhoop mein rakho to phone charge karo."],physics:"Solar panel photons ko electrons mein convert karta hai.",code:"// Hardware only"},
+{id:103,name:"Anemometer",cat:"Gadgets",level:"Medium",time:"4 hours",cost:600,icon:"💨",concept:"Wind Speed Measurement",materials:["Arduino Uno","Anemometer","LCD"],steps:["Anemometer connect karo.","Wind speed measure karo.","LCD par display karo."],physics:"Rotation speed se wind speed calculate hoti hai.",code:"// Anemometer reading code"},
+{id:104,name:"Digital Thermometer",cat:"Gadgets",level:"Easy",time:"2 hours",cost:300,icon:"🌡️",concept:"Temperature Sensing",materials:["Arduino Uno","LM35","LCD"],steps:["LM35 connect karo.","Temperature read karo.","LCD par show karo."],physics:"LM35 voltage output deta hai temperature ke proportional.",code:"float temp = analogRead(A0)*0.488;\nlcd.print(temp);"},
+{id:105,name:"Air Quality Display",cat:"Gadgets",level:"Hard",time:"5 hours",cost:1200,icon:"🌫️",concept:"PM2.5, Temperature, Humidity",materials:["Arduino Uno","PM2.5 Sensor","DHT11","LCD"],steps:["Sensors connect karo.","Data read karo.","LCD par display karo."],physics:"Laser scattering se particles count hote hain.",code:"// PM2.5 + DHT11 readings"},
+{id:106,name:"Smart Water Meter",cat:"Gadgets",level:"Hard",time:"5 hours",cost:1000,icon:"💧",concept:"Flow Sensor",materials:["Arduino Uno","Flow Sensor","LCD"],steps:["Flow sensor pipe par lagao.","Water flow measure karo.","Total volume display karo."],physics:"Flow sensor rotations count karta hai.",code:"// Flow rate calculation"},
+{id:107,name:"Heart Rate Watch",cat:"Gadgets",level:"Hard",time:"6 hours",cost:1200,icon:"⌚",concept:"Photoplethysmography",materials:["Arduino Nano","Pulse Sensor","OLED"],steps:["Pulse sensor finger par.","Heart rate measure karo.","OLED display."],physics:"Blood flow se light absorption change hoti hai.",code:"// Pulse sensor reading"},
+{id:108,name:"Distance Meter",cat:"Gadgets",level:"Easy",time:"2 hours",cost:300,icon:"📏",concept:"Ultrasonic",materials:["Arduino Uno","HC-SR04","LCD"],steps:["HC-SR04 connect karo.","Distance measure karo.","LCD display."],physics:"Sound echo time se distance calculate hoti hai.",code:"long d = pulseIn(echo,HIGH)*0.034/2;"},
+{id:109,name:"Voltage Current Meter",cat:"Gadgets",level:"Medium",time:"4 hours",cost:500,icon:"⚡",concept:"Analog Measurement",materials:["Arduino Uno","Voltage Sensor","Current Sensor","LCD"],steps:["Sensors connect karo.","Voltage aur current read karo.","LCD display."],physics:"Voltage divider se voltage measure hota hai.",code:"float v = analogRead(A0)*5.0/1023*ratio;"},
+{id:110,name:"GPS Tracker",cat:"Gadgets",level:"Hard",time:"6 hours",cost:1500,icon:"📍",concept:"GPS Positioning",materials:["Arduino Uno","GPS Module","LCD","Battery"],steps:["GPS module connect karo.","Location read karo.","Coordinates display karo."],physics:"GPS satellites se signals aate hain.",code:"// GPS location reading"},
+{id:111,name:"RFID Door Lock",cat:"Gadgets",level:"Hard",time:"6 hours",cost:1200,icon:"🔐",concept:"RFID Recognition",materials:["Arduino Uno","RFID Reader","Servo","LED"],steps:["RFID reader connect karo.","Card register karo.","Correct card to door khule."],physics:"RFID radio waves se tag read karta hai.",code:"if(tagID==authorized) servo.write(90);"},
+{id:112,name:"Fingerprint Lock",cat:"Gadgets",level:"Hard",time:"6 hours",cost:1500,icon:"👆",concept:"Biometric Recognition",materials:["Arduino Uno","Fingerprint Sensor","Relay","Solenoid"],steps:["Fingerprint sensor connect karo.","Finger register karo.","Match to lock khule."],physics:"Fingerprint unique pattern detect hota hai.",code:"if(fingerprint.match()) unlock();"},
+{id:113,name:"Bluetooth Speaker v2",cat:"Gadgets",level:"Medium",time:"4 hours",cost:700,icon:"🎵",concept:"Bluetooth Audio",materials:["BT Module","Amplifier","Speaker","Battery"],steps:["BT module connect karo.","Amplifier se speaker.","Phone pair karo."],physics:"Bluetooth audio stream karta hai.",code:"// Hardware only"},
+{id:114,name:"Electronic Piano",cat:"Gadgets",level:"Medium",time:"4 hours",cost:500,icon:"🎹",concept:"Frequency Generation",materials:["Arduino Uno","Buzzer","Push Buttons"],steps:["Buttons Arduino pins se.","Har button alag frequency.","Press to note bajega."],physics:"Buzzer frequency se note banta hai.",code:"if(btn1) tone(8,262);\nif(btn2) tone(8,294);"},
+{id:115,name:"Digital Clock",cat:"Gadgets",level:"Medium",time:"4 hours",cost:700,icon:"🕐",concept:"RTC, Seven Segment Display",materials:["Arduino Uno","DS3231 RTC Module","7-Segment Display","Battery"],steps:["RTC I2C se Arduino se jodo.","7-segment display pins jodo.","Code upload karo.","Time display hoga."],physics:"RTC crystal oscillator se precise time rakhta hai.",code:"#include <RTClib.h>\nRTC_DS3231 rtc;"},
+{id:116,name:"Password Lock",cat:"Gadgets",level:"Medium",time:"4 hours",cost:600,icon:"🔢",concept:"Keypad Input, Logic",materials:["Arduino Uno","4x4 Keypad","Servo","LCD"],steps:["Keypad connect karo.","Code set karo.","Correct to lock khule."],physics:"Keypad matrix scanning se input milta hai.",code:"if(enteredCode==correctCode) unlock();"},
+{id:117,name:"Smart Fan v2",cat:"Gadgets",level:"Medium",time:"3 hours",cost:500,icon:"🌀",concept:"Temperature Control",materials:["Arduino Uno","LM35","Relay","Fan"],steps:["LM35 connect karo.","Relay fan ke liye.","Temperature based speed."],physics:"Temperature sensor voltage deta hai.",code:"if(temp>30) fanOn();"},
+{id:118,name:"Auto Curtain",cat:"Gadgets",level:"Medium",time:"5 hours",cost:1000,icon:"🪟",concept:"Light Control, Motor",materials:["Arduino Uno","LDR","Stepper Motor","Curtain"],steps:["LDR light detect kare.","Stepper curtain control.","Din open raat close."],physics:"LDR resistance light se badalti hai.",code:"if(lightHigh) openCurtain();"},
+{id:119,name:"Air Quality Screen",cat:"Gadgets",level:"Medium",time:"5 hours",cost:800,icon:"📊",concept:"Multi-Sensor Display",materials:["Arduino Uno","DHT11","MQ-2","OLED"],steps:["Sensors connect karo.","Data read karo.","OLED display."],physics:"Multiple sensors se environment monitor hota hai.",code:"// Display temp humidity gas"},
+{id:120,name:"Solar Garden Light",cat:"Gadgets",level:"Easy",time:"2 hours",cost:300,icon:"🏮",concept:"Solar Energy, Light Control",materials:["Solar Panel","Battery","LED","LDR"],steps:["Din mein charge karo.","Raat mein LED jale."],physics:"Solar energy store hoti hai raat mein use hoti hai.",code:"// Hardware only"},
+{id:121,name:"Traffic Light Model",cat:"Fun",level:"Easy",time:"2 hours",cost:200,icon:"🚦",concept:"Timers, Sequential Logic",materials:["Arduino Uno","3 LEDs Red Yellow Green","220 ohm Resistors","Battery"],steps:["3 LEDs ko Arduino pins 8, 9, 10 se jodo resistor ke saath.","Code upload karo.","Red 5 sec, Yellow 2 sec, Green 5 sec cycle chalega.","Real traffic light jaisa."],physics:"Time sequence logic se LEDs control hoti hain. Real traffic light bhi timer based hai.",code:"void loop(){\n  digitalWrite(8,HIGH); delay(5000); digitalWrite(8,LOW);\n  digitalWrite(9,HIGH); delay(2000); digitalWrite(9,LOW);\n  digitalWrite(10,HIGH); delay(5000); digitalWrite(10,LOW);\n}"},
+{id:122,name:"Electronic Dice",cat:"Fun",level:"Easy",time:"2 hours",cost:250,icon:"🎲",concept:"Random Numbers, Display",materials:["Arduino Uno","7 LEDs dice pattern","Push Button","Resistors","Battery"],steps:["7 LEDs ko dice pattern mein arrange karo.","Har LED Arduino pin se jodo.","Push button pin 2 se.","Code upload random number 1-6.","Button press karo to dice roll hoga."],physics:"Arduino random function se random number generate karta hai. LEDs pattern display karti hain.",code:"if(digitalRead(2)){ int n = random(1,7); showNumber(n); }"},
+{id:123,name:"Musical Doorbell",cat:"Fun",level:"Easy",time:"2 hours",cost:300,icon:"🎵",concept:"Sound Frequency, Buzzer",materials:["Arduino Uno","Buzzer","Push Button","Battery"],steps:["Buzzer pin 8 se, button pin 2 se.","Code mein different tones set karo.","Button press karo to melody bajegi.","Different tunes try karo."],physics:"Buzzer different frequencies par different notes produce karta hai.",code:"if(digitalRead(2)){\n  tone(8, 262); delay(300);\n  tone(8, 330); delay(300);\n  tone(8, 392); delay(300);\n  noTone(8);\n}"},
+{id:124,name:"LED Chaser",cat:"Fun",level:"Easy",time:"1.5 hours",cost:200,icon:"✨",concept:"Sequential Logic, Timing",materials:["Arduino Uno","8 LEDs","Resistors","Battery"],steps:["8 LEDs ko pins 2-9 se jodo resistor ke saath.","Code upload karo.","LEDs ek ke baad ek jalengi chasing effect."],physics:"Sequential digital output se pattern banta hai. Timing se speed control hoti hai.",code:"for(int i=2;i<=9;i++){\n  digitalWrite(i,HIGH); delay(100);\n  digitalWrite(i,LOW);\n}"},
+{id:125,name:"Police Siren",cat:"Fun",level:"Easy",time:"1.5 hours",cost:200,icon:"🚔",concept:"Frequency Modulation, Sound",materials:["Arduino Uno","Buzzer","LEDs Red Blue","Battery"],steps:["Buzzer pin 8 se, LEDs pins 9, 10 se.","Code upload frequency sweep.","Siren sound aur alternating LEDs."],physics:"Frequency upar neeche karne se siren sound banti hai.",code:"for(int f=500;f<1500;f+=10){ tone(8,f); delay(5); }"},
+{id:126,name:"Metal Detector",cat:"Fun",level:"Medium",time:"4 hours",cost:600,icon:"🔍",concept:"Electromagnetic Induction, Eddy Currents",materials:["Arduino Uno","Coil 100 turns copper wire","Capacitor","Buzzer","LED"],steps:["Copper wire se 100 turns ka coil banao.","Coil aur capacitor se LC oscillator banao.","Arduino frequency measure kare.","Metal paas laao to frequency change hogi.","Buzzer bajega."],physics:"Metal ke paas jaane par eddy currents banti hain jo oscillator frequency change karti hain.",code:"// Measure LC oscillator frequency"},
+{id:127,name:"Lie Detector",cat:"Fun",level:"Hard",time:"5 hours",cost:800,icon:"🎭",concept:"Galvanic Skin Response",materials:["Arduino Uno","2 Metal Plates","10k Resistor","LED Bar","Buzzer"],steps:["2 metal plates ko fingers par lagao.","Arduino resistance measure kare.","Normal aur stressed resistance different hoti hai.","Sweating se resistance change hoti hai.","LED bar display karega."],physics:"Stress se sweating badhti hai jo skin resistance kam karti hai.",code:"int r = analogRead(A0);\n// display on LED bar"},
+{id:128,name:"Electronic Quiz Board",cat:"Fun",level:"Medium",time:"4 hours",cost:600,icon:"❓",concept:"Circuit Logic, Conduction",materials:["Arduino Uno","Cardboard","Wires","LED","Buzzer","Battery"],steps:["Cardboard par questions aur answers likho.","Correct answer wire se jodo.","Arduino se circuit banao.","Correct answer par LED aur buzzer ON."],physics:"Correct connection circuit complete karta hai.",code:"if(digitalRead(2)) { digitalWrite(9,HIGH); tone(8,1000); }"},
+{id:129,name:"Quiz Buzzer",cat:"Fun",level:"Medium",time:"3 hours",cost:400,icon:"🔔",concept:"Priority Logic",materials:["Arduino Uno","Buttons","LEDs","Buzzer"],steps:["Multiple buttons connect karo.","Pehla press to winner.","Baaki lock."],physics:"Digital logic se priority detect hoti hai.",code:"if(btn1 && !locked) { winner=1; locked=1; }"},
+{id:130,name:"Reaction Time Test",cat:"Fun",level:"Medium",time:"3 hours",cost:400,icon:"⚡",concept:"Timing, Reaction",materials:["Arduino Uno","LED","Button","LCD"],steps:["LED random time par jale.","User button dabaye.","Time measure karo."],physics:"Milliseconds se reaction time measure hota hai.",code:"if(btnPressed) time = millis() - startTime;"},
+{id:131,name:"Whack a Mole Game",cat:"Fun",level:"Medium",time:"4 hours",cost:600,icon:"🔨",concept:"Random, Timing",materials:["Arduino Uno","LEDs","Buttons","Buzzer"],steps:["LEDs different positions.","Random LED jale.","Correct button to score."],physics:"Random aur timing se game banta hai.",code:"if(btnCorrect) score++;"},
+{id:132,name:"Memory Game",cat:"Fun",level:"Medium",time:"4 hours",cost:500,icon:"🧠",concept:"Sequence Memory",materials:["Arduino Uno","4 LEDs","4 Buttons","Buzzer"],steps:["LED sequence dikhao.","User repeat kare.","Correct to next level."],physics:"Sequence memory se game banta hai.",code:"// Sequence display, user input compare"},
+{id:133,name:"Musical Fountain",cat:"Fun",level:"Hard",time:"6 hours",cost:1500,icon:"⛲",concept:"Frequency, Water Pump Control",materials:["Arduino Uno","Water Pump","Sound Sensor","LEDs"],steps:["Sound sensor music detect kare.","Pump frequency se control.","LEDs sync."],physics:"Sound frequency se pump speed control hoti hai.",code:"if(soundLevel>threshold) pumpOn();"},
+{id:134,name:"Electronic Hourglass",cat:"Fun",level:"Medium",time:"4 hours",cost:500,icon:"⏳",concept:"Timer, Display",materials:["Arduino Uno","LED Matrix","RTC"],steps:["Time set karo.","LEDs se sand display.","Countdown."],physics:"RTC se time track hota hai.",code:"// LED matrix countdown"},
+{id:135,name:"Horse Racing Game",cat:"Fun",level:"Medium",time:"4 hours",cost:600,icon:"🏇",concept:"Random, Race",materials:["Arduino Uno","LEDs","Buttons"],steps:["Multiple players.","Button press to advance.","Pehla finish to winner."],physics:"Random speed se race interesting banti hai.",code:"if(btn1) pos1++; if(pos1>finish) win(1);"},
+{id:136,name:"Breakout Game",cat:"Fun",level:"Hard",time:"6 hours",cost:1000,icon:"🧱",concept:"Graphics, Collision",materials:["Arduino Uno","LCD","Buttons","Buzzer"],steps:["LCD par game.","Paddle control.","Ball physics."],physics:"Collision detection se game logic banta hai.",code:"// LCD game code"},
+{id:137,name:"Snake Game",cat:"Fun",level:"Hard",time:"6 hours",cost:1000,icon:"🐍",concept:"Grid, Movement",materials:["Arduino Uno","LCD","Buttons"],steps:["LCD grid.","Snake movement.","Food eat to grow."],physics:"Grid based movement se game banta hai.",code:"// Snake game code"},
+{id:138,name:"Shooting Game",cat:"Fun",level:"Hard",time:"7 hours",cost:1200,icon:"✈️",concept:"Movement, Collision",materials:["Arduino Uno","LCD","Buttons","Buzzer"],steps:["LCD display.","Player control.","Enemy movement."],physics:"Collision detection se game banta hai.",code:"// Shooting game code"},
+{id:139,name:"Tetris Game",cat:"Fun",level:"Hard",time:"8 hours",cost:1500,icon:"🧩",concept:"Rotation, Collision",materials:["Arduino Uno","LCD","Buttons","RTC"],steps:["Tetris blocks.","Rotation.","Line clear."],physics:"Matrix manipulation se game banta hai.",code:"// Tetris game code"},
+{id:140,name:"Maze Game",cat:"Fun",level:"Medium",time:"5 hours",cost:800,icon:"🌀",concept:"Path, Movement",materials:["Arduino Uno","LCD","Buttons"],steps:["Maze generate.","Player navigate.","Finish to win."],physics:"Grid based navigation se game banta hai.",code:"// Maze game code"},
+{id:141,name:"Pong Game",cat:"Fun",level:"Medium",time:"5 hours",cost:800,icon:"🎱",concept:"Physics, Collision",materials:["Arduino Uno","LCD","Buttons"],steps:["Ball physics.","Paddle control.","Score."],physics:"Physics simulation se ball move hota hai.",code:"// Pong game code"},
+{id:142,name:"Music Light Show",cat:"Fun",level:"Medium",time:"4 hours",cost:600,icon:"🎵",concept:"Frequency, LED",materials:["Arduino Uno","Sound Sensor","LEDs"],steps:["Music detect karo.","LEDs sync.","Frequency se color."],physics:"Sound frequency se LED pattern banta hai.",code:"if(bass) setColor(RED); if(treble) setColor(BLUE);"},
+{id:143,name:"Guess Number Game",cat:"Fun",level:"Easy",time:"2 hours",cost:300,icon:"🔢",concept:"Random, Comparison",materials:["Arduino Uno","Buttons","LEDs","Buzzer"],steps:["Random number.","User guess.","Correct to win sound."],physics:"Random aur comparison logic.",code:"if(guess==secret) win();"},
+{id:144,name:"Simon Says Game",cat:"Fun",level:"Medium",time:"5 hours",cost:700,icon:"🎮",concept:"Sequence Memory",materials:["Arduino Uno","4 LEDs","4 Buttons","Buzzer"],steps:["Sequence display.","User repeat.","Correct to next level."],physics:"Sequence memory game.",code:"// Sequence game code"},
+{id:145,name:"Dice and Score Game",cat:"Fun",level:"Medium",time:"4 hours",cost:500,icon:"🎯",concept:"Random, Score",materials:["Arduino Uno","7 LEDs","Button","LCD"],steps:["Dice roll.","Score add.","Target reach to win."],physics:"Random number game.",code:"// Dice score game"},
+{id:146,name:"Color Match Game",cat:"Fun",level:"Medium",time:"5 hours",cost:700,icon:"🌈",concept:"RGB Color",materials:["Arduino Uno","RGB LED","Buttons"],steps:["Color show.","Match karo.","Correct to win."],physics:"RGB color mixing.",code:"// Color match game"},
+{id:147,name:"Sound Level Meter",cat:"Fun",level:"Medium",time:"4 hours",cost:500,icon:"📢",concept:"Sound Amplitude",materials:["Arduino Uno","Sound Sensor","LED Bar"],steps:["Sound detect.","Level display.","LED bar."],physics:"Sound amplitude se level detect hoti hai.",code:"// Sound level display"},
+{id:148,name:"Temperature Game",cat:"Fun",level:"Medium",time:"4 hours",cost:500,icon:"🌡️",concept:"LM35, Guess",materials:["Arduino Uno","LM35","LCD","Buzzer"],steps:["Temperature read.","User guess.","Correct to win."],physics:"Temperature sensor game.",code:"// Temperature guess game"},
+{id:149,name:"Light Sensitive Game",cat:"Fun",level:"Easy",time:"3 hours",cost:400,icon:"💡",concept:"LDR, Game",materials:["Arduino Uno","LDR","LEDs","Buzzer"],steps:["Light detect.","Score.","Fast reaction."],physics:"LDR light game.",code:"// Light reaction game"},
+{id:150,name:"Motion Music",cat:"Fun",level:"Medium",time:"4 hours",cost:600,icon:"🎼",concept:"PIR, Buzzer",materials:["Arduino Uno","PIR Sensor","Buzzer"],steps:["Motion detect.","Music play.","Different tunes."],physics:"IR motion se music.",code:"if(digitalRead(2)) tone(8,440);"}
 ];
 
-/* =========================================================
-   STATE & STORAGE
-   ========================================================= */
-let currentCategory = 'all';
-let currentSearch = '';
-let showFavOnly = false;
-let sortType = 'default';
+/* ============ STATE ============ */
+let currentCategory='all';
+let currentSearch='';
+let showFavOnly=false;
+let sortType='default';
+let favorites=JSON.parse(localStorage.getItem('physFavs')||'[]');
+let completed=JSON.parse(localStorage.getItem('physDone')||'[]');
+let ratings=JSON.parse(localStorage.getItem('physRatings')||'{}');
+let comments=JSON.parse(localStorage.getItem('physComments')||'{}');
 
-let favorites = JSON.parse(localStorage.getItem('physFavs') || '[]');
-let completed = JSON.parse(localStorage.getItem('physDone') || '[]');
-let ratings = JSON.parse(localStorage.getItem('physRatings') || '{}');
-let comments = JSON.parse(localStorage.getItem('physComments') || '{}');
+const container=document.getElementById('projectContainer');
+const searchInput=document.getElementById('searchInput');
+const listTitle=document.getElementById('listTitle');
+const catButtons=document.getElementById('catButtons');
 
-const container = document.getElementById('projectContainer');
-const searchInput = document.getElementById('searchInput');
-const listTitle = document.getElementById('listTitle');
-const catButtons = document.getElementById('catButtons');
+const categories=['all','Vehicles','Alarms','Robots','Gadgets','Fun'];
+const catIcons={'all':'🌟 All','Vehicles':'🚗 Vehicles','Alarms':'🚨 Alarms','Robots':'🤖 Robots','Gadgets':'💡 Gadgets','Fun':'🎮 Fun'};
 
-const categories = ['all','Vehicles','Alarms','Robots','Gadgets','Fun'];
-const catIcons = { 'all':'🌟 All', 'Vehicles':'🚗 Vehicles', 'Alarms':'🚨 Alarms', 
-                   'Robots':'🤖 Robots', 'Gadgets':'💡 Gadgets', 'Fun':'🎮 Fun' };
-
-categories.forEach(cat => {
-    const btn = document.createElement('button');
-    btn.className = 'category-btn';
-    btn.textContent = catIcons[cat];
-    btn.dataset.cat = cat;
-    btn.onclick = () => filterCategory(cat);
+categories.forEach(cat=>{
+    const btn=document.createElement('button');
+    btn.className='category-btn';
+    btn.textContent=catIcons[cat];
+    btn.dataset.cat=cat;
+    btn.onclick=()=>filterCategory(cat);
     catButtons.appendChild(btn);
 });
 
-/* =========================================================
-   RENDER
-   ========================================================= */
-function renderProjects() {
-    let filtered = projects.filter(p => {
-        const matchCat = currentCategory === 'all' || p.cat === currentCategory;
-        const matchSearch = p.name.toLowerCase().includes(currentSearch) ||
-                            p.concept.toLowerCase().includes(currentSearch) ||
-                            p.cat.toLowerCase().includes(currentSearch);
-        const matchFav = !showFavOnly || favorites.includes(p.id);
-        return matchCat && matchSearch && matchFav;
+/* ============ RENDER ============ */
+function renderProjects(){
+    let filtered=projects.filter(p=>{
+        const mCat=currentCategory==='all'||p.cat===currentCategory;
+        const mS=p.name.toLowerCase().includes(currentSearch)||p.concept.toLowerCase().includes(currentSearch)||p.cat.toLowerCase().includes(currentSearch);
+        const mF=!showFavOnly||favorites.includes(p.id);
+        return mCat&&mS&&mF;
     });
+    if(sortType==='easy'){const o={Easy:1,Medium:2,Hard:3};filtered.sort((a,b)=>o[a.level]-o[b.level]);}
+    else if(sortType==='hard'){const o={Hard:1,Medium:2,Easy:3};filtered.sort((a,b)=>o[a.level]-o[b.level]);}
+    else if(sortType==='cost-low'){filtered.sort((a,b)=>a.cost-b.cost);}
+    else if(sortType==='cost-high'){filtered.sort((a,b)=>b.cost-a.cost);}
 
-    // Sorting
-    if (sortType === 'easy') {
-        const order = {Easy:1, Medium:2, Hard:3};
-        filtered.sort((a,b) => order[a.level] - order[b.level]);
-    } else if (sortType === 'hard') {
-        const order = {Hard:1, Medium:2, Easy:3};
-        filtered.sort((a,b) => order[a.level] - order[b.level]);
-    } else if (sortType === 'cost-low') {
-        filtered.sort((a,b) => a.cost - b.cost);
-    } else if (sortType === 'cost-high') {
-        filtered.sort((a,b) => b.cost - a.cost);
-    }
+    let title=currentCategory==='all'?'All Projects':catIcons[currentCategory];
+    if(showFavOnly)title='❤️ Your Favorites';
+    listTitle.textContent=title+' ('+filtered.length+')';
+    document.getElementById('totalCount').textContent=projects.length;
 
-    let title = currentCategory === 'all' ? 'All Projects' : catIcons[currentCategory];
-    if (showFavOnly) title = '❤️ Your Favorites';
-    listTitle.textContent = `${title} (${filtered.length})`;
+    if(filtered.length===0){container.innerHTML='<div class="no-result">😕 Koi project nahi mila.</div>';return;}
 
-    if (filtered.length === 0) {
-        container.innerHTML = '<div class="no-result">😕 Koi project nahi mila.</div>';
-        return;
-    }
-
-    container.innerHTML = filtered.map(p => `
+    container.innerHTML=filtered.map(p=>`
         <div class="project-card" data-id="${p.id}">
-            <button class="fav-btn ${favorites.includes(p.id)?'active':''}" 
-                onclick="event.stopPropagation();toggleFav(${p.id})">❤️</button>
+            <button class="fav-btn ${favorites.includes(p.id)?'active':''}" onclick="event.stopPropagation();toggleFav(${p.id})">❤️</button>
             <div class="icon-big">${p.icon}</div>
             <h3>${p.name} ${completed.includes(p.id)?'✅':''}</h3>
             <p><strong>⚙️ Concept:</strong> ${p.concept}</p>
@@ -972,326 +392,200 @@ function renderProjects() {
                 <span class="tag tag-cat">${p.cat}</span>
                 <span class="tag tag-cost">💰 ₹${p.cost}</span>
             </p>
-            <p style="margin-top:8px;">⭐ ${ratings[p.id] || 'Not rated'}</p>
+            <p style="margin-top:8px">⭐ ${ratings[p.id]||'Not rated'}</p>
         </div>
     `).join('');
 
-    document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('click', () => openProject(parseInt(card.dataset.id)));
+    document.querySelectorAll('.project-card').forEach(c=>{
+        c.addEventListener('click',()=>openProject(parseInt(c.dataset.id)));
     });
-
     updateFavCount();
     updateProgress();
 }
 
-function filterCategory(cat) {
-    currentCategory = cat;
-    showFavOnly = false;
-    document.querySelectorAll('.category-btn').forEach(b => {
-        b.classList.toggle('active', b.dataset.cat === cat);
-    });
+function filterCategory(cat){
+    currentCategory=cat;
+    showFavOnly=false;
+    document.querySelectorAll('.category-btn').forEach(b=>b.classList.toggle('active',b.dataset.cat===cat));
     renderProjects();
-    window.scrollTo({ top: 350, behavior: 'smooth' });
+    window.scrollTo({top:350,behavior:'smooth'});
 }
 
-searchInput.addEventListener('input', (e) => {
-    currentSearch = e.target.value.toLowerCase().trim();
-    renderProjects();
-});
+searchInput.addEventListener('input',e=>{currentSearch=e.target.value.toLowerCase().trim();renderProjects();});
 
-function sortBy(type, btn) {
-    sortType = type;
-    document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+function sortBy(type,btn){
+    sortType=type;
+    document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     renderProjects();
 }
 
-/* =========================================================
-   FAVORITES
-   ========================================================= */
-function toggleFav(id) {
-    if (favorites.includes(id)) {
-        favorites = favorites.filter(f => f !== id);
-    } else {
-        favorites.push(id);
-    }
-    localStorage.setItem('physFavs', JSON.stringify(favorites));
+function toggleFav(id){
+    if(favorites.includes(id))favorites=favorites.filter(f=>f!==id);
+    else favorites.push(id);
+    localStorage.setItem('physFavs',JSON.stringify(favorites));
     renderProjects();
 }
 
-function showFavorites() {
-    showFavOnly = !showFavOnly;
+function showFavorites(){
+    showFavOnly=!showFavOnly;
     renderProjects();
-    document.getElementById('favBtn').style.background = showFavOnly ? 'var(--primary)' : '';
+    document.getElementById('favBtn').style.background=showFavOnly?'var(--pr)':'';
 }
 
-function updateFavCount() {
-    document.getElementById('favCount').textContent = favorites.length;
-}
+function updateFavCount(){document.getElementById('favCount').textContent=favorites.length;}
 
-/* =========================================================
-   PROGRESS TRACKER
-   ========================================================= */
-function toggleComplete(id) {
-    if (completed.includes(id)) {
-        completed = completed.filter(f => f !== id);
-    } else {
-        completed.push(id);
-    }
-    localStorage.setItem('physDone', JSON.stringify(completed));
+function toggleComplete(id){
+    if(completed.includes(id))completed=completed.filter(f=>f!==id);
+    else completed.push(id);
+    localStorage.setItem('physDone',JSON.stringify(completed));
     renderProjects();
-    if(document.getElementById('modalContent').innerHTML) {
-        openProject(id, true);
-    }
+    openProject(id,true);
 }
 
-function updateProgress() {
-    const pct = (completed.length / projects.length) * 100;
-    document.getElementById('progressFill').style.width = pct + '%';
-    document.getElementById('progressText').textContent = `${completed.length} / ${projects.length} completed`;
+function updateProgress(){
+    const pct=(completed.length/projects.length)*100;
+    document.getElementById('progressFill').style.width=pct+'%';
+    document.getElementById('progressText').textContent=completed.length+' / '+projects.length+' completed';
 }
 
-/* =========================================================
-   RATING
-   ========================================================= */
-function setRating(id, star) {
-    ratings[id] = star;
-    localStorage.setItem('physRatings', JSON.stringify(ratings));
-    openProject(id, true);
+function setRating(id,star){
+    ratings[id]=star;
+    localStorage.setItem('physRatings',JSON.stringify(ratings));
+    openProject(id,true);
 }
 
-/* =========================================================
-   COMMENTS
-   ========================================================= */
-function addComment(id) {
-    const name = document.getElementById('cName').value.trim() || 'Anonymous';
-    const text = document.getElementById('cText').value.trim();
-    if (!text) return alert('Comment likho!');
-    
-    if (!comments[id]) comments[id] = [];
-    comments[id].push({
-        name,
-        text,
-        time: new Date().toLocaleString('en-IN')
-    });
-    localStorage.setItem('physComments', JSON.stringify(comments));
-    openProject(id, true);
+function addComment(id){
+    const name=document.getElementById('cName').value.trim()||'Anonymous';
+    const text=document.getElementById('cText').value.trim();
+    if(!text){alert('Comment likho!');return;}
+    if(!comments[id])comments[id]=[];
+    comments[id].push({name:name,text:text,time:new Date().toLocaleString('en-IN')});
+    localStorage.setItem('physComments',JSON.stringify(comments));
+    openProject(id,true);
 }
 
-/* =========================================================
-   MODAL
-   ========================================================= */
-function openProject(id, keepScroll) {
-    const p = projects.find(x => x.id === id);
-    if (!p) return;
+function escapeHtml(s){return s.replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
-    const userRating = ratings[p.id] || 0;
-    const projComments = comments[p.id] || [];
+function openProject(id,keepScroll){
+    const p=projects.find(x=>x.id===id);
+    if(!p)return;
+    const userRating=ratings[p.id]||0;
+    const projComments=comments[p.id]||[];
+    const ytSearch='https://www.youtube.com/results?search_query='+encodeURIComponent(p.name+' arduino project tutorial hindi');
 
-    const modal = document.getElementById('modalContent');
-    modal.innerHTML = `
-        <button class="close-btn" onclick="closeModal()">✕</button>
-        <h2>${p.icon} ${p.name}</h2>
-        <p>
-            <span class="tag tag-${p.level.toLowerCase()}">${p.level}</span>
-            <span class="tag tag-cat">${p.cat}</span>
-            <span class="tag tag-cost">💰 ₹${p.cost}</span>
-            <span class="tag tag-easy">⏱ ${p.time}</span>
-        </p>
+    document.getElementById('modalContent').innerHTML=
+        '<button class="close-btn" onclick="closeModal()">✕</button>'+
+        '<div class="modal-header">'+
+            '<div class="modal-icon">'+p.icon+'</div>'+
+            '<h2>'+p.name+'</h2>'+
+            '<p class="modal-tags">'+
+                '<span class="tag tag-'+p.level.toLowerCase()+'">'+p.level+'</span>'+
+                '<span class="tag tag-cat">'+p.cat+'</span>'+
+                '<span class="tag tag-cost">💰 ₹'+p.cost+'</span>'+
+                '<span class="tag tag-easy">⏱ '+p.time+'</span>'+
+            '</p>'+
+        '</div>'+
+        '<div class="action-buttons">'+
+            '<button class="action-btn '+(completed.includes(p.id)?'green':'')+'" onclick="toggleComplete('+p.id+')">'+
+                (completed.includes(p.id)?'✅ Completed':'⬜ Mark Complete')+
+            '</button>'+
+            '<button class="action-btn secondary" onclick="window.print()">🖨️ Print</button>'+
+            '<button class="action-btn blue" onclick="downloadPDF('+p.id+')">📄 PDF</button>'+
+            '<button class="action-btn secondary" onclick="copyCode('+p.id+')">📋 Copy Code</button>'+
+        '</div>'+
+        '<h3>🎯 Physics Concept</h3>'+
+        '<div class="concept-box">'+p.concept+'</div>'+
+        '<h3>🧰 Components Required (Buy Links)</h3>'+
+        '<ul class="components-list">'+
+            p.materials.map(m=>'<li><span>'+m+'</span><a href="https://www.amazon.in/s?k='+encodeURIComponent(m)+'" target="_blank" class="buy-link">🛒 Buy</a></li>').join('')+
+        '</ul>'+
+        '<h3>📝 Step-by-Step Guide</h3>'+
+        '<ol class="steps-list">'+
+            p.steps.map(s=>'<li>'+s+'</li>').join('')+
+        '</ol>'+
+        '<h3>🔬 Physics Explanation</h3>'+
+        '<div class="concept-box">'+p.physics+'</div>'+
+        (p.code?'<h3>💻 Arduino Code</h3><div class="code-box">'+escapeHtml(p.code)+'</div>':'')+
+        '<h3>🎥 Video Tutorial</h3>'+
+        '<div class="video-search">'+
+            '<p style="margin-bottom:12px;color:var(--td);font-size:.9rem">📺 Is project ka video tutorial YouTube par dekhein</p>'+
+            '<a href="'+ytSearch+'" target="_blank" class="action-btn red" style="text-decoration:none;display:inline-block">▶️ YouTube Par Dekho</a>'+
+        '</div>'+
+        '<h3>⚠️ Safety Tips</h3>'+
+        '<div class="warning-box">🔌 Battery ya power supply connect karne se pehle sabhi connections check karein.<br>🧑‍🏫 Adult ki supervision mein hi ye projects banayein.<br>🔥 Soldering iron se door rahein.</div>'+
+        '<div class="rating-section">'+
+            '<p><strong>⭐ Is project ko rate karein:</strong></p>'+
+            '<div class="stars">'+
+                [1,2,3,4,5].map(s=>'<span class="star '+(s<=userRating?'active':'')+'" onclick="setRating('+p.id+','+s+')">★</span>').join('')+
+            '</div>'+
+            (userRating?'<p style="margin-top:8px">Aapne '+userRating+'/5 diya</p>':'<p style="margin-top:8px;font-size:.85rem">Click karke rate karein</p>')+
+        '</div>'+
+        '<div class="comments-section">'+
+            '<h3>💬 Comments ('+projComments.length+')</h3>'+
+            '<div class="comment-input">'+
+                '<input id="cName" placeholder="Aapka naam"/>'+
+                '<input id="cText" placeholder="Comment likhein..."/>'+
+                '<button onclick="addComment('+p.id+')">Post</button>'+
+            '</div>'+
+            (projComments.length===0?'<p style="text-align:center;color:var(--td)">Abhi koi comment nahi. Pehla comment aap karein!</p>':
+                projComments.map(c=>'<div class="comment-item"><p class="name">'+escapeHtml(c.name)+'</p><p>'+escapeHtml(c.text)+'</p><p class="time">'+c.time+'</p></div>').join(''))+
+        '</div>';
 
-        ${p.image ? `<img src="${p.image}" alt="${p.name}" class="project-image" onerror="this.style.display='none'">` : ''}
-
-        <div class="action-buttons">
-            <button class="action-btn ${completed.includes(p.id)?'green':''}" onclick="toggleComplete(${p.id})">
-                ${completed.includes(p.id)?'✅ Completed':'⬜ Mark Complete'}
-            </button>
-            <button class="action-btn secondary" onclick="window.print()">🖨️ Print</button>
-            <button class="action-btn blue" onclick="downloadPDF(${p.id})">📄 PDF</button>
-            <button class="action-btn secondary" onclick="copyCode(${p.id})">📋 Copy Code</button>
-        </div>
-
-        <h3>🎯 Physics Concept</h3>
-        <div class="concept-box">${p.concept}</div>
-
-        <h3>🧰 Components (Buy Links)</h3>
-        <ul class="components-list">
-            ${p.materials.map(m => `
-                <li>
-                    <span>${m}</span>
-                    <a href="https://www.amazon.in/s?k=${encodeURIComponent(m)}" target="_blank" class="buy-link">🛒 Buy</a>
-                </li>
-            `).join('')}
-        </ul>
-
-        <h3>📝 Step-by-Step Guide</h3>
-        <ol>${p.steps.map(s => `<li>${s}</li>`).join('')}</ol>
-
-        <h3>🔬 Physics Explanation</h3>
-        <div class="concept-box">${p.physics}</div>
-
-        ${p.code ? `
-        <h3>💻 Arduino Code</h3>
-        <div class="code-box">${escapeHtml(p.code)}</div>
-        ` : ''}
-
-        ${p.video ? `
-        <h3>🎥 Video Tutorial</h3>
-        <div class="video-box">
-            <iframe src="${p.video}" allowfullscreen loading="lazy"></iframe>
-        </div>
-        ` : ''}
-
-        <h3>⚠️ Safety Tips</h3>
-        <div class="warning-box">
-            🔌 Battery ya power supply connect karne se pehle sabhi connections check karein.<br>
-            🧑‍🏫 Adult ki supervision mein hi ye projects banayein.<br>
-            🔥 Soldering iron se door rahein - bachche akele use na karein.
-        </div>
-
-        <div class="rating-section">
-            <p><strong>⭐ Is project ko rate karein:</strong></p>
-            <div class="stars">
-                ${[1,2,3,4,5].map(s => 
-                    `<span class="star ${s<=userRating?'active':''}" onclick="setRating(${p.id},${s})">★</span>`
-                ).join('')}
-            </div>
-            ${userRating ? `<p style="margin-top:8px;">Aapne ${userRating}/5 diya</p>` : '<p style="margin-top:8px;font-size:0.85rem;">Click karke rate karein</p>'}
-        </div>
-
-        <div class="comments-section">
-            <h3>💬 Comments (${projComments.length})</h3>
-            <div class="comment-input">
-                <input id="cName" placeholder="Aapka naam" />
-                <input id="cText" placeholder="Comment likhein..." />
-                <button onclick="addComment(${p.id})">Post</button>
-            </div>
-            ${projComments.length === 0 ? '<p style="text-align:center;color:var(--text-dim);">Abhi koi comment nahi. Pehla comment aap karein!</p>' :
-                projComments.map(c => `
-                    <div class="comment-item">
-                        <p class="name">${escapeHtml(c.name)}</p>
-                        <p>${escapeHtml(c.text)}</p>
-                        <p class="time">${c.time}</p>
-                    </div>
-                `).join('')
-            }
-        </div>
-    `;
-    
     document.getElementById('modalOverlay').classList.add('show');
-    document.body.style.overflow = 'hidden';
-    if (!keepScroll) {
-        document.getElementById('modalOverlay').scrollTop = 0;
-    }
+    document.body.style.overflow='hidden';
+    if(!keepScroll)document.getElementById('modalOverlay').scrollTop=0;
 }
 
-function escapeHtml(s) {
-    return s.replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-function closeModal() {
+function closeModal(){
     document.getElementById('modalOverlay').classList.remove('show');
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow='auto';
 }
 
-document.getElementById('modalOverlay').addEventListener('click', (e) => {
-    if (e.target.id === 'modalOverlay') closeModal();
+document.getElementById('modalOverlay').addEventListener('click',e=>{
+    if(e.target.id==='modalOverlay')closeModal();
 });
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
-});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
 
-function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+function copyCode(id){
+    const p=projects.find(x=>x.id===id);
+    if(!p.code){alert('Is project mein code nahi hai.');return;}
+    navigator.clipboard.writeText(p.code).then(()=>alert('✅ Code copied!')).catch(()=>alert('❌ Copy nahi hua.'));
 }
 
-/* =========================================================
-   COPY CODE
-   ========================================================= */
-function copyCode(id) {
-    const p = projects.find(x => x.id === id);
-    if (!p.code) return alert('Is project mein code nahi hai.');
-    navigator.clipboard.writeText(p.code).then(() => {
-        alert('✅ Code copied to clipboard!');
-    }).catch(() => {
-        alert('❌ Copy nahi hua. Manually copy karo.');
-    });
-}
-
-/* =========================================================
-   PDF DOWNLOAD (using browser print)
-   ========================================================= */
-function downloadPDF(id) {
-    const p = projects.find(x => x.id === id);
-    if (!p) return;
-    
-    const win = window.open('', '_blank');
-    win.document.write(`
-        <html><head><title>${p.name} - Physics Project</title>
-        <style>
-            body { font-family: Arial; padding: 30px; max-width: 800px; margin: auto; line-height: 1.6; }
-            h1 { color: #ff6b35; border-bottom: 3px solid #ff6b35; padding-bottom: 10px; }
-            h2 { color: #1e3c72; margin-top: 25px; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
-            ul, ol { padding-left: 25px; }
-            li { margin: 6px 0; }
-            .box { background: #eaf4ff; padding: 12px; border-left: 4px solid #2a5298; margin: 10px 0; }
-            .code { background: #f5f5f5; padding: 12px; font-family: Consolas; font-size: 0.85rem; border-radius: 5px; white-space: pre; }
-            .footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #ddd; color: #666; }
-            @media print { .no-print { display: none; } }
-        </style></head><body>
-        <h1>${p.icon} ${p.name}</h1>
-        <p><strong>Category:</strong> ${p.cat} | <strong>Level:</strong> ${p.level} | <strong>Time:</strong> ${p.time} | <strong>Cost:</strong> ₹${p.cost}</p>
-        
-        <h2>🎯 Physics Concept</h2>
-        <div class="box">${p.concept}</div>
-        
-        <h2>🧰 Materials Required</h2>
-        <ul>${p.materials.map(m => `<li>${m}</li>`).join('')}</ul>
-        
-        <h2>📝 Step-by-Step Method</h2>
-        <ol>${p.steps.map(s => `<li>${s}</li>`).join('')}</ol>
-        
-        <h2>🔬 Physics Explanation</h2>
-        <div class="box">${p.physics}</div>
-        
-        ${p.code ? `<h2>💻 Arduino Code</h2><div class="code">${escapeHtml(p.code)}</div>` : ''}
-        
-        <h2>⚠️ Safety</h2>
-        <p>Adult supervision required. Check connections before power ON.</p>
-        
-        <div class="footer">
-            <p>Generated from Masudurrahman Website</p>
-            <p>© 2025 - Made for Class 8-10 Students</p>
-        </div>
-        
-        <button class="no-print" onclick="window.print()" style="display:block;margin:30px auto;padding:12px 24px;background:#ff6b35;color:white;border:none;border-radius:25px;font-size:1rem;cursor:pointer;font-weight:bold;">
-            🖨️ Print / Save as PDF
-        </button>
-        </body></html>
-    `);
+function downloadPDF(id){
+    const p=projects.find(x=>x.id===id);
+    if(!p)return;
+    const win=window.open('','_blank');
+    win.document.write('<html><head><title>'+p.name+'</title><style>body{font-family:Arial;padding:30px;max-width:800px;margin:auto;line-height:1.6}h1{color:#ff6b35;border-bottom:3px solid #ff6b35;padding-bottom:10px}h2{color:#1e3c72;margin-top:25px;border-bottom:1px solid #ddd;padding-bottom:5px}.box{background:#eaf4ff;padding:12px;border-left:4px solid #2a5298;margin:10px 0}.code{background:#f5f5f5;padding:12px;font-family:Consolas;font-size:.85rem;border-radius:5px;white-space:pre}.footer{text-align:center;margin-top:40px;padding-top:20px;border-top:2px solid #ddd;color:#666}</style></head><body>'+
+        '<h1>'+p.icon+' '+p.name+'</h1>'+
+        '<p><strong>Category:</strong> '+p.cat+' | <strong>Level:</strong> '+p.level+' | <strong>Time:</strong> '+p.time+' | <strong>Cost:</strong> ₹'+p.cost+'</p>'+
+        '<h2>🎯 Physics Concept</h2><div class="box">'+p.concept+'</div>'+
+        '<h2>🧰 Materials Required</h2><ul>'+p.materials.map(m=>'<li>'+m+'</li>').join('')+'</ul>'+
+        '<h2>📝 Step-by-Step Method</h2><ol>'+p.steps.map(s=>'<li>'+s+'</li>').join('')+'</ol>'+
+        '<h2>🔬 Physics Explanation</h2><div class="box">'+p.physics+'</div>'+
+        (p.code?'<h2>💻 Arduino Code</h2><div class="code">'+escapeHtml(p.code)+'</div>':'')+
+        '<h2>⚠️ Safety</h2><p>Adult supervision required. Check connections before power ON.</p>'+
+        '<div class="footer"><p>PhysicsModels Website</p><p>© 2025 - Made for Class 8-10 Students</p></div>'+
+        '<button onclick="window.print()" style="display:block;margin:30px auto;padding:12px 24px;background:#ff6b35;color:#fff;border:none;border-radius:25px;font-size:1rem;cursor:pointer;font-weight:bold">🖨️ Print / Save as PDF</button></body></html>');
     win.document.close();
 }
 
-/* =========================================================
-   THEME TOGGLE
-   ========================================================= */
-function toggleTheme() {
+function toggleTheme(){
     document.body.classList.toggle('dark');
     document.body.classList.toggle('light');
-    const isDark = document.body.classList.contains('dark');
-    document.getElementById('themeBtn').textContent = isDark ? '☀️ Light' : '🌙 Dark';
-    localStorage.setItem('physTheme', isDark ? 'dark' : 'light');
+    const isDark=document.body.classList.contains('dark');
+    document.getElementById('themeBtn').textContent=isDark?'☀️ Light':'🌙 Dark';
+    localStorage.setItem('physTheme',isDark?'dark':'light');
 }
 
-// Load theme
-if (localStorage.getItem('physTheme') === 'light') {
+if(localStorage.getItem('physTheme')==='light'){
     document.body.classList.remove('dark');
     document.body.classList.add('light');
-    document.getElementById('themeBtn').textContent = '🌙 Dark';
+    document.getElementById('themeBtn').textContent='🌙 Dark';
 }
 
-/* =========================================================
-   INIT
-   ========================================================= */
 renderProjects();
 </script>
 
